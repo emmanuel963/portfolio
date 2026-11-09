@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[PRÉNOM] [NOM] — Portfolio | Administration Systèmes, Réseaux &amp; Cybersécurité</title>
+  <meta name="description" content="Portfolio de [PRÉNOM] [NOM], étudiant en informatique spécialisé en administration systèmes, réseaux et cybersécurité. Formation, projets, compétences et certifications.">
+  <meta name="author" content="[PRÉNOM] [NOM]">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="[PRÉNOM] [NOM] — Portfolio Informatique">
+  <meta property="og:description" content="Étudiant en informatique — Administration Systèmes, Réseaux & Cybersécurité.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/profile.jpg">
+
+  <link rel="icon" href="assets/icons/favicon.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google Fonts (optionnel, retirer si besoin de rester 100% hors-ligne) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+ 
+  <!-- ========================= -->
+  <!-- BOUTON SKIP LINK (a11y)   -->
+  <!-- ========================= -->
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+  <!-- ========================= -->
+  <!-- NAVBAR                    -->
+  <!-- ========================= -->
+  <header class="navbar" id="navbar">
+    <nav class="nav-container" aria-label="Navigation principale">
+      <a href="#hero" class="nav-logo">Emmanuel Théo Donald<span class="accent"> </span>N'SONI</a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about" class="nav-link">À propos</a></li>
+        <li><a href="#formation" class="nav-link">Formation</a></li>
+        <li><a href="#parcours" class="nav-link">Parcours</a></li>
+        <li><a href="#synthese" class="nav-link">Tableau de synthèse</a></li>
+        <li><a href="#competences" class="nav-link">Compétences</a></li>
+        <li><a href="#projets" class="nav-link">Projets</a></li>
+        <li><a href="#certifications" class="nav-link">Certifications</a></li>
+        <li><a href="#veille" class="nav-link">Veille technologique</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="assets/documents/CV.pdf" class="btn btn-outline btn-small" download>Télécharger mon CV</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Changer de thème (clair/sombre)">
+          <span class="icon-sun" aria-hidden="true">☀️</span>
+          <span class="icon-moon" aria-hidden="true">🌙</span>
+        </button>
+        <button id="hamburger" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ========================= -->
+    <!-- HERO                      -->
+    <!-- ========================= -->
+    <section id="hero" class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <canvas id="network-canvas" class="network-canvas" aria-hidden="true"></canvas>
+      <div class="container hero-content fade-in">
+        <div class="hero-text">
+
+         <div> <p class="hero-kicker">Bonjour, je suis</p></div>
+          <h1 class="hero-title">Emmanuel Théo Donald N'SONI</h1>
+          <h2 class="hero-subtitle">Étudiant en informatique — Administration Systèmes, Réseaux &amp; Cybersécurité</h2>
+          <p class="hero-typing">
+  Spécialisé en
+  <span id="typing-text" class="typing-text">Administration systèmes</span><span class="typing-cursor" aria-hidden="true"></span>
+</p>
+          <p class="hero-desc">
+            Passionné par les infrastructures systèmes et réseaux, je conçois, déploie et sécurise des environnements
+            informatiques fiables. Actuellement en recherche d'une alternance pour mettre mes compétences en pratique
+            au sein d'une équipe IT.
+          </p>
+          <div class="hero-buttons">
+            <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+            <a href="#contact" class="btn btn-outline">Me contacter</a>
+          </div>
+          <div class="hero-socials">
+            <a href="https://github.com/[GITHUB]" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55v-1.94c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.77.11 3.06.74.8 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.07.78 2.16v3.2c0 .3.21.66.79.55A10.51 10.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/emmanuel-theo-danald-n-soni-712589333/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.24 8.25h4.5V23H.24V8.25ZM8.25 8.25h4.31v2.02h.06c.6-1.13 2.07-2.33 4.26-2.33 4.55 0 5.39 3 5.39 6.9V23h-4.5v-6.94c0-1.65-.03-3.78-2.3-3.78-2.31 0-2.66 1.8-2.66 3.66V23h-4.5V8.25Z"/></svg>
+            </a>
+            <a href="mailto:[EMAIL]" aria-label="Email" class="social-icon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M1.5 4.5h21a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-21a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1Zm1.8 2 8.7 6.6 8.7-6.6H3.3Zm-.8 12.5h19v-10.9l-9.16 6.95a1 1 0 0 1-1.18 0L1.5 8.1v10.9Z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="hero-photo-frame">
+            <!-- Remplacer src par assets/images/profile.jpg -->
+            <img src="assets/images/profile-placeholder.svg" alt="Photo de profil de [PRÉNOM] [NOM]" class="hero-photo">
+          </div>
+        </div>
+      </div>
+      <a href="#about" class="scroll-indicator" aria-label="Défiler vers le bas">↓</a>
+    </section>
+
+    <!-- ========================= -->
+    <!-- À PROPOS                  -->
+    <!-- ========================= -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">À propos <span class="accent">de moi</span></h2>
+        <p class="section-subtitle">Qui je suis, ce que je recherche</p>
+
+        <div class="about-grid">
+          <div class="about-col fade-in-up">
+            <h3>Mon parcours</h3>
+            <p>
+             Originaire du Congo-Brazzaville, je me suis progressivement intéressé à l’informatique et aux nouvelles technologies. Après une première formation en informatique, j’ai choisi de poursuivre mes études en BTS SIO option SISR, où je développe mes compétences en systèmes, réseaux, virtualisation et cybersécurité. À travers différents projets pratiques, j’apprends à administrer, sécuriser et résoudre les problèmes liés aux infrastructures informatiques.
+
+            </p>
+            <h3>Mes objectifs professionnels</h3>
+            <p>
+            Mon objectif est d’intégrer une entreprise en alternance afin de développer mon expérience en systèmes, réseaux et cybersécurité. Après mon BTS SIO, je souhaite poursuivre en Licence Professionnelle ou Bachelor, puis continuer vers un Master ou une école d’ingénierie. À terme, je souhaite évoluer vers un poste d’administrateur systèmes et réseaux, avec une spécialisation en cybersécurité.
+
+          </div>
+          <div class="about-col fade-in-up">
+            <h3>Centres d'intérêt professionnels</h3>
+            <ul class="about-list">
+              <li>Administration systèmes (Windows Server, Linux)</li>
+              <li>Réseaux et sécurité (VLAN, VPN, pare-feu)</li>
+              <li>Virtualisation et cloud</li>
+              <li>[Ajoutez vos propres centres d'intérêt]</li>
+            </ul>
+            <h3>Mes qualités</h3>
+            <ul class="about-list">
+              <li>Rigueur et méthode</li>
+              <li>Curiosité technique</li>
+              <li>Esprit d'équipe</li>
+              <li>[Ajoutez vos propres qualités]</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= -->
+<!-- FORMATION                 -->
+<!-- ========================= -->
+<section id="formation" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Ma <span class="accent">Formation</span></h2>
+    <p class="section-subtitle">Parcours académique et diplôme préparé</p>
+
+    <!-- ---------- TIMELINE ---------- -->
+    <div class="timeline">
+
+      <div class="timeline-item fade-in-up">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-period">2026 – 2027</span>
+          <h3>BTS SIO 2<sup>e</sup> année — Option SISR</h3>
+          <p class="timeline-place">Institut F2I — Vincennes</p>
+          <p>Approfondissement de l'administration des infrastructures, de la supervision et de la cybersécurité, avec réalisation des projets du portefeuille de compétences.</p>
+          <div class="tag-list">
+            <span class="tag">Windows Server</span>
+            <span class="tag">Réseaux</span>
+            <span class="tag">Cybersécurité</span>
+            <span class="tag">Virtualisation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in-up">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-period">2024 – 2025</span>
+          <h3>BTS SIO 1<sup>re</sup> année — Option SISR</h3>
+          <p class="timeline-place">Institut F2I — Vincennes</p>
+          <p>Acquisition des bases : support utilisateur, systèmes d'exploitation, réseaux TCP/IP, bases de données et développement.</p>
+          <div class="tag-list">
+            <span class="tag">TCP/IP</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Support utilisateur</span>
+            <span class="tag">GLPI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item fade-in-up">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-period">2023 – 2024</span>
+          <h3>Baccalauréat Scientifique</h3>
+          <p class="timeline-place">Centre Scolaire Notre Dame du Rosaire — Pointe-Noire</p>
+          <p>Spécialités Mathématiques, Physique et Chimie.</p>
+          <div class="tag-list">
+            <span class="tag">Mathématiques</span>
+            <span class="tag">Physique</span>
+            <span class="tag">Chimie</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ---------- FOCUS SUR LE DIPLÔME ---------- -->
+    <div class="diplome-focus fade-in-up">
+
+      <div class="diplome-header">
+        <span class="diplome-tag">Diplôme préparé</span>
+        <h3>BTS SIO — Services Informatiques aux Organisations</h3>
+        <p class="diplome-option">Option SISR — Solutions d'Infrastructure, Systèmes et Réseaux</p>
+      </div>
+
+      <div class="diplome-intro">
+        <p>
+          Le BTS SIO est un diplôme d'État de niveau 5 (Bac+2) qui forme aux métiers de l'informatique
+          en entreprise. L'option <strong>SISR</strong> est orientée vers l'infrastructure : elle prépare
+          à installer, administrer, sécuriser et superviser les systèmes et les réseaux d'une organisation,
+          ainsi qu'à assurer le support des utilisateurs.
+        </p>
+        <p>
+          Elle mène notamment aux postes de technicien d'infrastructure, administrateur systèmes et réseaux,
+          technicien support, ou encore vers une poursuite d'études en licence professionnelle,
+          bachelor ou école d'ingénieurs.
+        </p>
+      </div>
+
+      <div class="diplome-grid">
+
+        <!-- Colonne 1 : compétences du référentiel -->
+        <div class="diplome-block">
+          <h4>Compétences clés du référentiel</h4>
+          <ul class="diplome-list">
+            <li>
+              <strong>Bloc 1 — Support et mise à disposition de services informatiques</strong>
+              <span>Gérer le patrimoine informatique, répondre aux incidents et demandes d'assistance, développer la présence en ligne, travailler en mode projet, mettre à disposition un service.</span>
+            </li>
+            <li>
+              <strong>Bloc 2 — Administration des systèmes et des réseaux</strong>
+              <span>Concevoir une solution d'infrastructure, installer et configurer les équipements, exploiter et superviser les services déployés.</span>
+            </li>
+            <li>
+              <strong>Bloc 3 — Cybersécurité des services informatiques</strong>
+              <span>Protéger les données et l'identité numérique, sécuriser les équipements et les accès, assurer la continuité de service et gérer les incidents de sécurité.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Colonne 2 : matières enseignées -->
+        <div class="diplome-block">
+          <h4>Matières et domaines enseignés</h4>
+          <ul class="diplome-list">
+            <li>
+              <strong>Enseignements professionnels</strong>
+              <span>Support et mise à disposition de services, administration systèmes et réseaux, cybersécurité, ateliers de professionnalisation.</span>
+            </li>
+            <li>
+              <strong>Mathématiques pour l'informatique</strong>
+              <span>Logique, arithmétique, graphes, probabilités et statistiques appliquées.</span>
+            </li>
+            <li>
+              <strong>Culture Économique, Juridique et Managériale (CEJM)</strong>
+              <span>Environnement économique et juridique de l'entreprise, appliqué au numérique.</span>
+            </li>
+            <li>
+              <strong>Culture générale et expression</strong>
+              <span>Analyse de documents, synthèse et expression écrite et orale.</span>
+            </li>
+            <li>
+              <strong>Anglais technique</strong>
+              <span>Vocabulaire informatique, documentation technique et communication professionnelle.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Encadré évaluation -->
+      <div class="diplome-eval">
+        <h4>Modalités d'évaluation</h4>
+        <div class="eval-items">
+          <div class="eval-item">
+            <span class="eval-icon" aria-hidden="true">📝</span>
+            <p>Épreuves écrites : culture générale, mathématiques, CEJM et anglais</p>
+          </div>
+          <div class="eval-item">
+            <span class="eval-icon" aria-hidden="true">💻</span>
+            <p>Épreuves professionnelles : administration des systèmes et réseaux, cybersécurité</p>
+          </div>
+          <div class="eval-item">
+            <span class="eval-icon" aria-hidden="true">📂</span>
+            <p>Portefeuille de compétences et soutenance des réalisations professionnelles</p>
+          </div>
+          <div class="eval-item">
+            <span class="eval-icon" aria-hidden="true">🏢</span>
+            <p>Stages ou alternance en entreprise sur les deux années de formation</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!
+    <!-- ========================= -->
+    <!-- PARCOURS PROFESSIONNEL    -->
+    <!-- ========================= -->
+    <section id="parcours" class="section">
+      <div class="container">
+        <h2 class="section-title">Mon <span class="accent">Parcours</span></h2>
+        <p class="section-subtitle">Expériences professionnelles</p>
+
+        <div class="timeline">
+          <!-- Dupliquez ce bloc .timeline-item pour ajouter une expérience -->
+          <div class="timeline-item fade-in-up">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-period">Mai 2025 – Juin 2025</span>
+              <h3>Technicien Support Informatique</h3>
+              <p class="timeline-place">F2I — Vincennes</p>
+              <p>Inventaire et gestion du parc informatique</p>
+              <p>Diagnostic et réparation de pannes matériels</p>
+              <p>-Ajout des postes au domaine Active Directory et création de comptes utilisateurs et accès</p>
+              <div class="tag-list">
+               
+              </div>
+             
+            </div>
+          </div>
+
+          <div class="timeline-item fade-in-up">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-period">Mai 2025 – Juin 2025</span>
+              <h3>Technicien Support Informatique</h3>
+              <p class="timeline-place">F2I — Vincennes</p>
+              <p>-Installation et configuration de postes clients sous Windows 10/11</p>
+              <p>-Paramétrage des adresses IP fixes, du DNS et de la passerelle pour l'intégration au réseau interne</p>
+              <p>-Ajout des postes au domaine Active Directory et création de comptes utilisateurs et accès</p>
+              <div class="tag-list">
+                <span class="tag">[Technologie 1]</span>
+                <span class="tag">[Technologie 2]</span>
+              </div>
+              <p class="timeline-skills"><strong>Compétences développées :</strong> [compétence A, compétence B]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= -->
+<!-- TABLEAU DE SYNTHÈSE       -->
+<!-- ========================= -->
+<section id="synthese" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Tableau de <span class="accent">Synthèse</span></h2>
+    <p class="section-subtitle">Compétences validées dans le cadre du BTS SIO — SISR</p>
+
+    <div class="synthese-pdf fade-in-up">
+
+      <!-- Colonne gauche : présentation + actions -->
+      <div class="synthese-infos">
+        <span class="veille-tag">Document officiel</span>
+        <h3>Tableau de synthèse des compétences</h3>
+        <p>
+          Ce document récapitule, pour chaque compétence du référentiel BTS SIO — SISR, les projets et
+          situations professionnelles rencontrés, le contexte, les technologies utilisées, les missions
+          réalisées et les résultats obtenus.
+        </p>
+
+        <div class="veille-actions">
+          <!-- Remplacez "tableau-synthese.pdf" par le nom exact de votre fichier -->
+          <a href="assets/documents/tableau-synthese.pdf"
+             class="btn btn-primary"
+             target="_blank"
+             rel="noopener noreferrer">
+            Ouvrir le tableau (PDF)
+          </a>
+          <a href="assets/documents/tableau-synthese.pdf"
+             class="btn btn-outline"
+             download
+             aria-label="Télécharger le tableau de synthèse au format PDF">
+            Télécharger
+          </a>
+        </div>
+      </div>
+
+      <!-- Colonne droite : aperçu du PDF -->
+      <div class="synthese-preview">
+        <div class="pdf-frame">
+          <object data="assets/documents/tableau-synthese.pdf#view=FitH"
+                  type="application/pdf"
+                  aria-label="Aperçu du tableau de synthèse des compétences">
+            <!-- Affiché si le navigateur ne sait pas lire les PDF (fréquent sur mobile) -->
+            <div class="pdf-fallback">
+              <p>L'aperçu du PDF ne peut pas s'afficher dans ce navigateur.</p>
+              <a href="assets/documents/tableau-synthese.pdf"
+                 class="btn btn-small btn-primary"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Ouvrir le PDF
+              </a>
+            </div>
+          </object>
+        </div>
+        <p class="pdf-caption">Aperçu du document — cliquez sur « Ouvrir le tableau » pour la version complète.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- ========================= -->
+    <!-- COMPÉTENCES               -->
+    <!-- ========================= -->
+    <section id="competences" class="section">
+      <div class="container">
+        <h2 class="section-title">Mes <span class="accent">Compétences</span></h2>
+        <p class="section-subtitle">Technologies et outils maîtrisés</p>
+
+        <div class="skills-grid">
+          <div class="skill-card fade-in-up">
+            <h3>Administration systèmes</h3>
+            <div class="badge-list">
+              <span class="badge">Windows Server</span>
+              <span class="badge">Active Directory</span>
+              <span class="badge">DNS</span>
+              <span class="badge">DHCP</span>
+              <span class="badge">GPO</span>
+              <span class="badge">Linux</span>
+              <span class="badge">Ubuntu</span>
+              <span class="badge">Debian</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in-up">
+            <h3>Réseaux</h3>
+            <div class="badge-list">
+              <span class="badge">TCP/IP</span>
+              <span class="badge">VLAN</span>
+              <span class="badge">Routage</span>
+              <span class="badge">Cisco</span>
+              <span class="badge">Packet Tracer</span>
+              <span class="badge">VPN</span>
+              <span class="badge">pfSense</span>
+              <span class="badge">Wireshark</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in-up">
+            <h3>Virtualisation</h3>
+            <div class="badge-list">
+              <span class="badge">Proxmox</span>
+              <span class="badge">VMware</span>
+              <span class="badge">VirtualBox</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in-up">
+            <h3>Support informatique</h3>
+            <div class="badge-list">
+              <span class="badge">GLPI</span>
+              <span class="badge">Diagnostic</span>
+              <span class="badge">Maintenance</span>
+              <span class="badge">Gestion des incidents</span>
+            </div>
+          </div>
+
+          <div class="skill-card fade-in-up">
+            <h3>Cybersécurité</h3>
+            <div class="badge-list">
+              <span class="badge">Pare-feu</span>
+              <span class="badge">Analyse réseau</span>
+              <span class="badge">Gestion des droits</span>
+              <span class="badge">Sécurisation des systèmes</span>
+              <span class="badge">Supervision</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <!-- ========================= -->
+<!-- PROJETS                   -->
+<!-- ========================= -->
+<section id="projets" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Mes <span class="accent">Projets</span></h2>
+    <p class="section-subtitle">Réalisations techniques</p>
+
+    <div class="projects-grid">
+
+      <article class="project-card fade-in-up">
+        <div class="project-image">
+          <img src="Image/GLPI.JPG" alt="Capture d'écran de l'infrastructure GLPI déployée">
+        </div>
+        <div class="project-body">
+          <h3>Installation et configuration de GLPI (En équipe)</h3>
+          <p>Installation et configuration de GLPI avec intégration LDAP / Active Directory et déploiement de l'agent GLPI sur le parc informatique.</p>
+          <div class="tag-list">
+            <span class="tag">GLPI</span>
+            <span class="tag">LDAP</span>
+            <span class="tag">Active Directory</span>
+          </div>
+          <p class="project-skills"><strong>Compétences :</strong> Administration systèmes, gestion de parc</p>
+          <div class="cert-actions">
+            <a href="Document/Projets/GLPI.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
+              Voir le rapport (PDF)
+            </a>
+            <a href="Document/Projets/GLPI.pdf" class="btn btn-small btn-outline" download>
+              Télécharger
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card fade-in-up">
+        <div class="project-image">
+          <img src="Image/AD.jpg" alt="Schéma de l'infrastructure réseau avec VLAN">
+        </div>
+        <div class="project-body">
+          <h3>Déploiement AD DS avec DNS, DHCP et redondance (failover)</h3>
+          <p>Mise en place d'un serveur AD DS avec DNS et DHCP, incluant un serveur de secours et un basculement DHCP pour la redondance.</p>
+          <div class="tag-list">
+            <span class="tag">GPO</span>
+            <span class="tag">DHCP</span>
+            <span class="tag">DNS</span>
+          </div>
+          <p class="project-skills"><strong>Compétences :</strong> Administration réseaux</p>
+          <div class="cert-actions">
+            <a href="Document/Projets/mode_operatoire_AD.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
+              Voir le rapport (PDF)
+            </a>
+            <a href="Document/Projets/mode_operatoire_AD.pdf" class="btn btn-small btn-outline" download>
+              Télécharger
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card fade-in-up">
+        <div class="project-image">
+          <img src="Image/Wireshark.jpg" alt="Capture d'écran de l'infrastructure virtualisée Proxmox">
+        </div>
+        <div class="project-body">
+          <h3>Installation de Wireshark sur Linux pour l'analyse réseau</h3>
+          <p>Mise en place d'un outil d'analyse de trafic réseau sur un système Linux.</p>
+          <div class="tag-list">
+            <span class="tag">Proxmox</span>
+            <span class="tag">VMware</span>
+            <span class="tag">Windows</span>
+            <span class="tag">Linux</span>
+          </div>
+          <p class="project-skills"><strong>Compétences :</strong> Virtualisation, administration systèmes</p>
+          <div class="cert-actions">
+            <a href="Document/Projets/mode opératoire wireshark.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
+              Voir le rapport (PDF)
+            </a>
+            <a href="Document/Projets/mode opératoire wireshark.pdf" class="btn btn-small btn-outline" download>
+              Télécharger
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card fade-in-up">
+        <div class="project-image">
+          <img src="Image/PFSENSE.jpg" alt="Capture d'écran de la configuration du pare-feu pfSense">
+        </div>
+        <div class="project-body">
+          <h3>Pare-feu pfSense (En équipe)</h3>
+          <p>Installation et configuration d'un pare-feu pfSense avec règles de filtrage et mise en place d'un VPN. (En équipe)</p>
+          <div class="tag-list">
+            <span class="tag">pfSense</span>
+            <span class="tag">VPN</span>
+            <span class="tag">Sécurité</span>
+          </div>
+          <p class="project-skills"><strong>Compétences :</strong> Cybersécurité, réseaux</p>
+          <div class="cert-actions">
+            <a href="Document/Projets/Projet PFSENSE.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
+              Voir le rapport (PDF)
+            </a>
+            <a href="Document/Projets/Projet PFSENSE.pdf" class="btn btn-small btn-outline" download>
+              Télécharger
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Dupliquez .project-card pour ajouter un projet -->
+    </div>
+  </div>
+</section>
+
+   <!-- ========================= -->
+<!-- CERTIFICATIONS            -->
+<!-- ========================= -->
+<section id="certifications" class="section">
+  <div class="container">
+    <h2 class="section-title">Mes <span class="accent">Certifications</span></h2>
+    <p class="section-subtitle">Diplômes et attestations de réussite</p>
+
+    <div class="cert-grid">
+
+      <!-- CARTE CERTIFICATION — dupliquer ce bloc pour en ajouter une -->
+      <div class="cert-card fade-in-up">
+        <img src="Image/CISCO.JPG" alt="Logo de la certification [NOM DE LA CERTIFICATION]" class="cert-logo">
+        <h3>Introduction à l’IoT (IdO) et à la transformation digitale</h3>
+        <p class="cert-org">CISCO</p>
+        
+        <div class="cert-actions">
+          <!-- Remplace "attestation-1.pdf" par le nom exact de ton fichier PDF -->
+          <a href="Document/Certification/Certification 1.pdf"
+             class="btn btn-small btn-primary"
+             target="_blank"
+             rel="noopener noreferrer">
+            Voir l'attestation (PDF)
+          </a>
+          <a href="Document/Certification/Certification 1.pdf"
+             class="btn btn-small btn-outline"
+             download
+             aria-label="Télécharger l'attestation [NOM DE LA CERTIFICATION] au format PDF">
+            Télécharger
+          </a>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in-up">
+        <img src="Image/CISCO.JPG" alt="Logo de la certification [NOM DE LA CERTIFICATION]" class="cert-logo">
+        <h3>Premiers pas avec Cisco Packet Tracer</h3>
+        <p class="cert-org">CISCO</p>
+        
+        <div class="cert-actions">
+          <a href="Document/Certification/Certification 2.pdf"
+             class="btn btn-small btn-primary"
+             target="_blank"
+             rel="noopener noreferrer">
+            Voir l'attestation (PDF)
+          </a>
+          <a href="Document/Certification/Certification 2.pdf"
+             class="btn btn-small btn-outline"
+             download
+             aria-label="Télécharger l'attestation [NOM DE LA CERTIFICATION] au format PDF">
+            Télécharger
+          </a>
+        </div>
+      </div>
+
+      <div class="cert-card fade-in-up">
+        <img src="assets/icons/cert-placeholder.svg" alt="Logo de la certification [NOM DE LA CERTIFICATION]" class="cert-logo">
+        <h3>[NOM DE LA CERTIFICATION]</h3>
+        <p class="cert-org">[Organisme]</p>
+        <p class="cert-date">[Date]</p>
+        <div class="cert-actions">
+          <a href="assets/documents/attestation-3.pdf"
+             class="btn btn-small btn-primary"
+             target="_blank"
+             rel="noopener noreferrer">
+            Voir l'attestation (PDF)
+          </a>
+          <a href="assets/documents/attestation-3.pdf"
+             class="btn btn-small btn-outline"
+             download
+             aria-label="Télécharger l'attestation [NOM DE LA CERTIFICATION] au format PDF">
+            Télécharger
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+ <!-- ========================= -->
+<!-- VEILLE TECHNOLOGIQUE      -->
+<!-- ========================= -->
+<section id="veille" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Veille <span class="accent">Technologique</span></h2>
+    <p class="section-subtitle">Mon sujet de veille et son dossier complet</p>
+
+    <article class="veille-single fade-in-up">
+
+      <!-- Colonne gauche : description de la veille -->
+      <div class="veille-infos">
+        <span class="veille-tag">Dossier de veille</span>
+        <h3>Phishing — L'hameçonnage au cœur des cybermenaces modernes</h3>
+        <p class="veille-meta">
+          <span class="veille-date">[Période / Date de mise à jour]</span>
+          <span class="veille-sep" aria-hidden="true">•</span>
+          <span class="veille-source">Sources : [vos sources principales]</span>
+        </p>
+
+        <h4>Présentation du sujet</h4>
+        <p>[Expliquez ici le thème choisi et pourquoi il vous intéresse dans le cadre du BTS SIO SISR.]</p>
+
+        <h4>Méthodologie</h4>
+        <p>
+          Je réalise ma veille à l'aide de Google Alertes, configurées sur les mots-clés liés à mon domaine
+          (réseaux, cybersécurité, virtualisation), complétées par la consultation régulière de sites
+          spécialisés et de flux RSS.
+        </p>
+        <a href="https://www.bing.com/ck/a?!&&p=5f5d22318afce234a63473439201a28d441240beee6d6ae275bd09b2d888167eJmltdHM9MTc5MDQ2NzIwMA&ptn=3&ver=2&hsh=4&fclid=2434dba6-6722-634c-120a-ce65669b6254&psq=google+alerte&u=a1aHR0cHM6Ly93d3cuZ29vZ2xlLmZyL2FsZXJ0cw" class="btn-alert" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a2.4 2.4 0 0 0 2.4-2.4h-4.8A2.4 2.4 0 0 0 12 22Zm7.2-6v-5.4c0-3.5-1.86-6.43-5.1-7.2v-.78a2.1 2.1 0 1 0-4.2 0v.78c-3.24.77-5.1 3.69-5.1 7.2V16l-1.8 1.8v.9h18v-.9L19.2 16Z"/></svg>
+          Voir mes Google Alertes
+        </a>
+
+        <h4>Mon analyse</h4>
+        <p>[Votre analyse personnelle : ce que vous en retenez, l'impact sur votre pratique professionnelle et vos projets.]</p>
+
+        <div class="veille-actions">
+          <!-- Remplacez "veille-technologique.pdf" par le nom exact de votre fichier -->
+          <a href="Document/Veille/veille-technologique.pdf"
+             class="btn btn-primary"
+             target="_blank"
+             rel="noopener noreferrer">
+            Ouvrir le dossier (PDF)
+          </a>
+          <a href="Document/Veille/veille-technologique.pdf"
+             class="btn btn-outline"
+             download
+             aria-label="Télécharger mon dossier de veille technologique au format PDF">
+            Télécharger
+          </a>
+        </div>
+      </div>
+
+      <!-- Colonne droite : aperçu du PDF intégré -->
+      <div class="veille-pdf">
+        <div class="pdf-frame">
+          <object data="Document/Veille/veille-technologique.pdf#view=FitH"
+                  type="application/pdf"
+                  aria-label="Aperçu du dossier de veille technologique">
+            <div class="pdf-fallback">
+              <p>L'aperçu du PDF ne peut pas s'afficher dans ce navigateur.</p>
+              <a href="Document/Veille/veille-technologique.pdf"
+                 class="btn btn-small btn-primary"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                Ouvrir le PDF
+              </a>
+            </div>
+          </object>
+        </div>
+        <p class="pdf-caption">Aperçu du dossier — cliquez sur « Ouvrir le dossier » pour la version complète.</p>
+      </div>
+
+    </article>
+  </div>
+</section>
+
+    <!-- ========================= -->
+    <!-- CONTACT                   -->
+    <!-- ========================= -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Me <span class="accent">Contacter</span></h2>
+        <p class="section-subtitle">Une question, une opportunité ? N'hésitez pas à me contacter.</p>
+
+        <div class="contact-grid">
+          <form id="contact-form" class="contact-form fade-in-up" novalidate>
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input type="text" id="name" name="name" required minlength="2" autocomplete="name">
+              <span class="form-error" id="error-name"></span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+              <span class="form-error" id="error-email"></span>
+            </div>
+            <div class="form-group">
+              <label for="subject">Sujet</label>
+              <input type="text" id="subject" name="subject" required minlength="2">
+              <span class="form-error" id="error-subject"></span>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required minlength="10"></textarea>
+              <span class="form-error" id="error-message"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer le message</button>
+            <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
+          </form>
+
+         <div class="contact-info fade-in-up">
+
+  <div class="contact-item">
+    <span class="contact-icon" aria-hidden="true">✉️</span>
+    <div>
+      <h4>Email</h4>
+      <a href="mailto:[EMAIL]">[EMAIL]</a>
+    </div>
+  </div>
+
+  <div class="contact-item">
+    <span class="contact-icon" aria-hidden="true">💼</span>
+    <div>
+      <h4>LinkedIn</h4>
+      <a href="https://linkedin.com/in/[LINKEDIN]" target="_blank" rel="noopener noreferrer">linkedin.com/in/[LINKEDIN]</a>
+    </div>
+  </div>
+
+  <div class="contact-item">
+    <span class="contact-icon" aria-hidden="true">💻</span>
+    <div>
+      <h4>GitHub</h4>
+      <a href="https://github.com/[GITHUB]" target="_blank" rel="noopener noreferrer">github.com/[GITHUB]</a>
+    </div>
+  </div>
+
+  <div class="contact-item">
+    <span class="contact-icon" aria-hidden="true">📍</span>
+    <div>
+      <h4>Localisation</h4>
+      <p>[VILLE], France</p>
+    </div>
+  </div>
+
+  <!-- ========== CARTE ========== -->
+  <div class="contact-map">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.3287109038865!2d2.708249875636939!3d48.83286840250335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e604bc777ab223%3A0x3dd0a5f589109b94!2s1%20Rue%20Emile%20Peynaud%2C%2077600%20Bussy-Saint-Georges!5e0!3m2!1sfr!2sfr!4v1792977400491!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+      title="Carte de ma localisation : [VILLE]"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================= -->
+  <!-- FOOTER                    -->
+  <!-- ========================= -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <p class="footer-name">Emmanuel Théo Donald N'SONI<p>
+        <p class="footer-tagline">Administration Systèmes, Réseaux &amp; Cybersécurité</p>
+      </div>
+
+      <nav class="footer-links" aria-label="Liens du footer">
+        <a href="#about">À propos</a>
+        <a href="#formation">Formation</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer-socials">
+        <a href="https://github.com/[GITHUB]" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+        <a href="https://linkedin.com/in/[LINKEDIN]" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+        <a href="mailto:[EMAIL]" aria-label="Email">Email</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span>. Tous droits réservés.</p>
+      <button id="back-to-top" class="back-to-top" aria-label="Retour en haut">↑</button>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
