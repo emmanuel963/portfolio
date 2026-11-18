@@ -1183,15 +1183,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
    RESPONSIVE
    ========================================================================== */
 
-/* Entre 1280 et 1439 px : navigation un peu plus compacte */
-@media (min-width: 1280px) and (max-width: 1439px) {
-  .nav-links { gap: 14px; }
-  .nav-link { font-size: 0.85rem; }
-  .nav-logo { font-size: 1.1rem; }
-}
 
-/* Menu hamburger dès 1279 px (la barre complète ne tient pas en dessous) */
-@media (max-width: 1279px) {
+/* Menu hamburger sous 1200 px (la barre complète ne tient pas en dessous) */
+@media (max-width: 1199px) {
   .nav-links {
     position: fixed;
     top: 68px;
@@ -1279,34 +1273,50 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* ==========================================================================
-   NAVBAR — style en majuscules
+   NAVBAR — onglets en majuscules (taille fluide selon la largeur de l'écran)
    ========================================================================== */
 
 /* Tous écrans */
-.nav-logo {
-  font-size: 1.45rem;
-  white-space: nowrap;
-}
+.nav-logo { white-space: nowrap; }
 
 .nav-link {
   text-transform: uppercase;
-  letter-spacing: 0.06em;
   font-weight: 500;
+  letter-spacing: 0.05em;
   white-space: nowrap;   /* empêche « À PROPOS » de passer sur 2 lignes */
 }
 
-/* Ordinateur portable (1280 – 1499 px) : version compacte */
-@media (min-width: 1280px) {
-  .nav-container { max-width: 1600px; padding: 14px 28px; }
-  .nav-links { gap: 16px; flex-wrap: nowrap; }
-  .nav-link { font-size: 0.76rem; letter-spacing: 0.04em; }
-  .nav-logo { font-size: 1.25rem; }
+/* Ordinateur : la barre complète s'affiche à partir de 1200 px */
+@media (min-width: 1200px) {
+  .nav-container {
+    max-width: 1600px;
+    padding: 14px clamp(20px, 3vw, 48px);
+    gap: clamp(12px, 1.5vw, 28px);
+  }
+
+  .nav-logo { font-size: clamp(1.15rem, 0.7rem + 0.45vw, 1.45rem); }
+
+  .nav-links {
+    flex: 1;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: clamp(10px, 1.2vw, 28px);
+  }
+
+  .nav-link {
+    font-size: clamp(0.68rem, 0.45rem + 0.3vw, 0.82rem);
+    letter-spacing: 0.04em;
+  }
+
+  /* Boutons de droite un peu plus compacts pour laisser la place aux onglets */
+  .nav-actions { gap: 8px; }
+  .nav-actions .btn-small { padding: 8px 13px; font-size: 0.78rem; }
+  .theme-toggle { width: 36px; height: 36px; }
 }
 
-/* Grand écran (1500 px et plus) : version aérée */
-@media (min-width: 1500px) {
-  .nav-container { padding: 14px 48px; }
-  .nav-links { gap: 26px; }
-  .nav-link { font-size: 0.82rem; letter-spacing: 0.06em; }
-  .nav-logo { font-size: 1.45rem; }
+/* Très grand écran : version aérée */
+@media (min-width: 1600px) {
+  .nav-link { letter-spacing: 0.06em; }
+  .nav-actions .btn-small { padding: 9px 18px; font-size: 0.85rem; }
+  .theme-toggle { width: 40px; height: 40px; }
 }
