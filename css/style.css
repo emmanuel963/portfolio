@@ -1277,3 +1277,36 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .fx-card::before { display: none; }
   .section-title::after { width: 60px; transition: none; }
 }
+
+/* ==========================================================================
+   NAVBAR — style en majuscules
+   ========================================================================== */
+
+/* Tous écrans */
+.nav-logo {
+  font-size: 1.45rem;
+  white-space: nowrap;
+}
+
+.nav-link {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  white-space: nowrap;   /* empêche « À PROPOS » de passer sur 2 lignes */
+}
+
+/* Ordinateur portable (1280 – 1499 px) : version compacte */
+@media (min-width: 1280px) {
+  .nav-container { max-width: 1600px; padding: 14px 28px; }
+  .nav-links { gap: 16px; flex-wrap: nowrap; }
+  .nav-link { font-size: 0.76rem; letter-spacing: 0.04em; }
+  .nav-logo { font-size: 1.25rem; }
+}
+
+/* Grand écran (1500 px et plus) : version aérée */
+@media (min-width: 1500px) {
+  .nav-container { padding: 14px 48px; }
+  .nav-links { gap: 26px; }
+  .nav-link { font-size: 0.82rem; letter-spacing: 0.06em; }
+  .nav-logo { font-size: 1.45rem; }
+}
