@@ -42,8 +42,8 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#about" class="nav-link">À propos</a></li>
         <li><a href="#formation" class="nav-link">Formation</a></li>
-        <li><a href="#parcours" class="nav-link">Parcours Professionels</a></li>
-        <li><a href="#synthese" class="nav-link">Tableau de Synthèse</a></li>
+        <li><a href="#parcours" class="nav-link">Parcours<span class="nav-long"> Professionnels</span></a></li>
+        <li><a href="#synthese" class="nav-link"><span class="nav-long">Tableau de </span>Synthèse</a></li>
         <li><a href="#competences" class="nav-link">Compétences</a></li>
         <li><a href="#projets" class="nav-link">Projets E5/E6</a></li>
         <li><a href="#certifications" class="nav-link">Certifications</a></li>
@@ -53,7 +53,7 @@
 
       <div class="nav-actions">
         <!-- Ton CV doit être dans le dossier CV/ — adapte le nom du fichier si besoin -->
-        <a href="CV/CV_Emmanuel_N'SONI (3).pdf" class="btn btn-outline btn-small" download>Télécharger mon CV</a>
+        <a href="CV/CV_Emmanuel_N%27SONI%20(3).pdf" class="btn btn-outline btn-small" target="_blank" rel="noopener noreferrer">Voir mon CV</a>
         <button id="theme-toggle" class="theme-toggle" aria-label="Changer de thème (clair/sombre)">
           <span class="icon-sun" aria-hidden="true">☀️</span>
           <span class="icon-moon" aria-hidden="true">🌙</span>
@@ -512,109 +512,143 @@
     <section id="projets" class="section section-alt">
       <div class="container">
         <h2 class="section-title">Mes <span class="accent">Projets</span></h2>
-        <p class="section-subtitle">Réalisations techniques</p>
+        <p class="section-subtitle">Réalisations techniques classées par épreuve du BTS SIO</p>
 
-        <div class="projects-grid">
-
-          <article class="project-card fade-in-up">
-            <div class="project-image">
-              <img src="Image/GLPI2.png" alt="Capture d'écran de l'interface GLPI déployée">
-            </div>
-            <div class="project-body">
-              <h3>Installation et configuration de GLPI (En équipe)</h3>
-              <p>Installation et configuration de GLPI avec intégration LDAP / Active Directory et déploiement de l'agent GLPI sur le parc informatique.</p>
-              <div class="tag-list">
-                <span class="tag">GLPI</span>
-                <span class="tag">LDAP</span>
-                <span class="tag">Active Directory</span>
-              </div>
-              <p class="project-skills"><strong>Compétences :</strong> Administration systèmes, gestion de parc</p>
-              <div class="cert-actions">
-                <a href="Document/Projets/GLPI.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
-                  Voir le rapport (PDF)
-                </a>
-                <a href="Document/Projets/GLPI.pdf" class="btn btn-small btn-outline" download>
-                  Télécharger
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card fade-in-up">
-            <div class="project-image">
-              <img src="Image/AD.jpg" alt="Capture d'écran du déploiement Active Directory avec DNS et DHCP">
-            </div>
-            <div class="project-body">
-              <h3>Déploiement AD DS avec DNS, DHCP et redondance (failover)</h3>
-              <p>Mise en place d'un serveur AD DS avec DNS et DHCP, incluant un serveur de secours et un basculement DHCP pour la redondance.</p>
-              <div class="tag-list">
-                <span class="tag">AD DS</span>
-                <span class="tag">GPO</span>
-                <span class="tag">DHCP</span>
-                <span class="tag">DNS</span>
-              </div>
-              <p class="project-skills"><strong>Compétences :</strong> Administration systèmes et réseaux, haute disponibilité</p>
-              <div class="cert-actions">
-                <a href="Document/Projets/mode_operatoire_AD.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
-                  Voir le rapport (PDF)
-                </a>
-                <a href="Document/Projets/mode_operatoire_AD.pdf" class="btn btn-small btn-outline" download>
-                  Télécharger
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card fade-in-up">
-            <div class="project-image">
-              <img src="Image/Wireshark.jpg" alt="Capture d'écran de l'analyse de trafic réseau avec Wireshark">
-            </div>
-            <div class="project-body">
-              <h3>Installation de Wireshark sur Linux pour l'analyse réseau</h3>
-              <p>Mise en place d'un outil d'analyse de trafic réseau sur un système Linux.</p>
-              <div class="tag-list">
-                <span class="tag">Wireshark</span>
-                <span class="tag">Linux</span>
-                <span class="tag">Analyse réseau</span>
-              </div>
-              <p class="project-skills"><strong>Compétences :</strong> Analyse réseau, administration systèmes</p>
-              <div class="cert-actions">
-                <a href="Document/Projets/mode%20op%C3%A9ratoire%20wireshark.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
-                  Voir le rapport (PDF)
-                </a>
-                <a href="Document/Projets/mode%20op%C3%A9ratoire%20wireshark.pdf" class="btn btn-small btn-outline" download>
-                  Télécharger
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card fade-in-up">
-            <div class="project-image">
-              <img src="Image/PFSENSE.jpg" alt="Capture d'écran de la configuration du pare-feu pfSense">
-            </div>
-            <div class="project-body">
-              <h3>Pare-feu pfSense (En équipe)</h3>
-              <p>Installation et configuration d'un pare-feu pfSense avec règles de filtrage et mise en place d'un VPN.</p>
-              <div class="tag-list">
-                <span class="tag">pfSense</span>
-                <span class="tag">VPN</span>
-                <span class="tag">Sécurité</span>
-              </div>
-              <p class="project-skills"><strong>Compétences :</strong> Cybersécurité, réseaux</p>
-              <div class="cert-actions">
-                <a href="Document/Projets/Projet%20PFSENSE.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
-                  Voir le rapport (PDF)
-                </a>
-                <a href="Document/Projets/Projet%20PFSENSE.pdf" class="btn btn-small btn-outline" download>
-                  Télécharger
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Dupliquez un bloc <article class="project-card"> pour ajouter un projet -->
+        <!-- Accès rapide -->
+        <div class="projets-switch">
+          <a href="#projets-e5" class="switch-link switch-link--e5">Projets E5</a>
+          <a href="#projets-e6" class="switch-link switch-link--e6">Projets E6</a>
         </div>
+
+        <!-- ========== E5 ========== -->
+        <div id="projets-e5" class="projets-groupe projets-groupe--e5">
+          <div class="groupe-header fade-in-up">
+            <span class="groupe-badge" aria-hidden="true">E5</span>
+            <div>
+              <h3 class="groupe-title">Épreuve E5 — Production et fourniture de services informatiques</h3>
+              <p class="groupe-desc">Projets liés à la mise à disposition, à l'administration et au support de services informatiques.</p>
+            </div>
+          </div>
+
+          <div class="projects-grid">
+
+            <article class="project-card fade-in-up">
+              <div class="project-image">
+                <img src="Image/GLPI2.png" alt="Capture d'écran de l'interface GLPI déployée">
+              </div>
+              <div class="project-body">
+                <h3>Installation et configuration de GLPI (En équipe)</h3>
+                <p>Installation et configuration de GLPI avec intégration LDAP / Active Directory et déploiement de l'agent GLPI sur le parc informatique.</p>
+                <div class="tag-list">
+                  <span class="tag">GLPI</span>
+                  <span class="tag">LDAP</span>
+                  <span class="tag">Active Directory</span>
+                </div>
+                <p class="project-skills"><strong>Compétences :</strong> Administration systèmes, gestion de parc</p>
+                <div class="cert-actions">
+                  <a href="Document/Projets/GLPI.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
+                    Voir le rapport (PDF)
+                  </a>
+                  <a href="Document/Projets/GLPI.pdf" class="btn btn-small btn-outline" download>
+                    Télécharger
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card fade-in-up">
+              <div class="project-image">
+                <img src="Image/AD.jpg" alt="Capture d'écran du déploiement Active Directory avec DNS et DHCP">
+              </div>
+              <div class="project-body">
+                <h3>Déploiement AD DS avec DNS, DHCP et redondance (failover)</h3>
+                <p>Mise en place d'un serveur AD DS avec DNS et DHCP, incluant un serveur de secours et un basculement DHCP pour la redondance.</p>
+                <div class="tag-list">
+                  <span class="tag">AD DS</span>
+                  <span class="tag">GPO</span>
+                  <span class="tag">DHCP</span>
+                  <span class="tag">DNS</span>
+                </div>
+                <p class="project-skills"><strong>Compétences :</strong> Administration systèmes et réseaux, haute disponibilité</p>
+                <div class="cert-actions">
+                  <a href="Document/Projets/mode_operatoire_AD.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
+                    Voir le rapport (PDF)
+                  </a>
+                  <a href="Document/Projets/mode_operatoire_AD.pdf" class="btn btn-small btn-outline" download>
+                    Télécharger
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Pour ajouter un projet E5 : copie un bloc <article class="project-card"> ci-dessus -->
+          </div>
+        </div>
+
+        <!-- ========== E6 ========== -->
+        <div id="projets-e6" class="projets-groupe projets-groupe--e6">
+          <div class="groupe-header fade-in-up">
+            <span class="groupe-badge" aria-hidden="true">E6</span>
+            <div>
+              <h3 class="groupe-title">Épreuve E6 — Cybersécurité des services informatiques</h3>
+              <p class="groupe-desc">Projets liés à la protection, à la sécurisation et à l'analyse des systèmes et des réseaux.</p>
+            </div>
+          </div>
+
+          <div class="projects-grid">
+
+            <article class="project-card fade-in-up">
+              <div class="project-image">
+                <img src="Image/Wireshark.jpg" alt="Capture d'écran de l'analyse de trafic réseau avec Wireshark">
+              </div>
+              <div class="project-body">
+                <h3>Installation de Wireshark sur Linux pour l'analyse réseau</h3>
+                <p>Mise en place d'un outil d'analyse de trafic réseau sur un système Linux.</p>
+                <div class="tag-list">
+                  <span class="tag">Wireshark</span>
+                  <span class="tag">Linux</span>
+                  <span class="tag">Analyse réseau</span>
+                </div>
+                <p class="project-skills"><strong>Compétences :</strong> Analyse réseau, administration systèmes</p>
+                <div class="cert-actions">
+                  <a href="Document/Projets/mode%20op%C3%A9ratoire%20wireshark.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
+                    Voir le rapport (PDF)
+                  </a>
+                  <a href="Document/Projets/mode%20op%C3%A9ratoire%20wireshark.pdf" class="btn btn-small btn-outline" download>
+                    Télécharger
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card fade-in-up">
+              <div class="project-image">
+                <img src="Image/PFSENSE.jpg" alt="Capture d'écran de la configuration du pare-feu pfSense">
+              </div>
+              <div class="project-body">
+                <h3>Pare-feu pfSense (En équipe)</h3>
+                <p>Installation et configuration d'un pare-feu pfSense avec règles de filtrage et mise en place d'un VPN.</p>
+                <div class="tag-list">
+                  <span class="tag">pfSense</span>
+                  <span class="tag">VPN</span>
+                  <span class="tag">Sécurité</span>
+                </div>
+                <p class="project-skills"><strong>Compétences :</strong> Cybersécurité, réseaux</p>
+                <div class="cert-actions">
+                  <a href="Document/Projets/Projet%20PFSENSE.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">
+                    Voir le rapport (PDF)
+                  </a>
+                  <a href="Document/Projets/Projet%20PFSENSE.pdf" class="btn btn-small btn-outline" download>
+                    Télécharger
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Pour ajouter un projet E6 : copie un bloc <article class="project-card"> ci-dessus -->
+          </div>
+        </div>
+
       </div>
     </section>
 
