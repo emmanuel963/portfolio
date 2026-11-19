@@ -105,6 +105,200 @@
 }
 
 
+
+
+/* ==========================================================================
+   19. CATALOGUE DE COULEURS
+   Ajouter data-palette="nom" sur <html> pour choisir une palette.
+   Palettes disponibles : ocean, violet, emerald, sunset, rose, amber.
+   ========================================================================== */
+
+/* Océan — palette par défaut */
+:root,
+[data-palette="ocean"] {
+  --accent: #38bdf8;
+  --accent-rgb: 56, 189, 248;
+  --accent-secondary: #2dd4bf;
+  --accent-secondary-rgb: 45, 212, 191;
+  --on-accent: #061522;
+  --c1-rgb: 56, 189, 248;
+  --c2-rgb: 45, 212, 191;
+  --c3-rgb: 129, 140, 248;
+  --c4-rgb: 74, 222, 128;
+  --c5-rgb: 251, 146, 60;
+}
+
+/* Violet — moderne et créatif */
+[data-palette="violet"] {
+  --accent: #a78bfa;
+  --accent-rgb: 167, 139, 250;
+  --accent-secondary: #e879f9;
+  --accent-secondary-rgb: 232, 121, 249;
+  --on-accent: #180b2b;
+  --c1-rgb: 167, 139, 250;
+  --c2-rgb: 232, 121, 249;
+  --c3-rgb: 96, 165, 250;
+  --c4-rgb: 52, 211, 153;
+  --c5-rgb: 251, 113, 133;
+}
+
+/* Émeraude — sobre et professionnel */
+[data-palette="emerald"] {
+  --accent: #34d399;
+  --accent-rgb: 52, 211, 153;
+  --accent-secondary: #a3e635;
+  --accent-secondary-rgb: 163, 230, 53;
+  --on-accent: #052016;
+  --c1-rgb: 52, 211, 153;
+  --c2-rgb: 163, 230, 53;
+  --c3-rgb: 45, 212, 191;
+  --c4-rgb: 96, 165, 250;
+  --c5-rgb: 251, 146, 60;
+}
+
+/* Sunset — chaud et énergique */
+[data-palette="sunset"] {
+  --accent: #fb923c;
+  --accent-rgb: 251, 146, 60;
+  --accent-secondary: #f43f5e;
+  --accent-secondary-rgb: 244, 63, 94;
+  --on-accent: #2b1007;
+  --c1-rgb: 251, 146, 60;
+  --c2-rgb: 244, 63, 94;
+  --c3-rgb: 250, 204, 21;
+  --c4-rgb: 52, 211, 153;
+  --c5-rgb: 192, 132, 252;
+}
+
+/* Rose — élégant et affirmé */
+[data-palette="rose"] {
+  --accent: #fb7185;
+  --accent-rgb: 251, 113, 133;
+  --accent-secondary: #f0abfc;
+  --accent-secondary-rgb: 240, 171, 252;
+  --on-accent: #2a0812;
+  --c1-rgb: 251, 113, 133;
+  --c2-rgb: 240, 171, 252;
+  --c3-rgb: 192, 132, 252;
+  --c4-rgb: 45, 212, 191;
+  --c5-rgb: 250, 204, 21;
+}
+
+/* Ambre — lumineux et distinctif */
+[data-palette="amber"] {
+  --accent: #fbbf24;
+  --accent-rgb: 251, 191, 36;
+  --accent-secondary: #f97316;
+  --accent-secondary-rgb: 249, 115, 22;
+  --on-accent: #261603;
+  --c1-rgb: 251, 191, 36;
+  --c2-rgb: 249, 115, 22;
+  --c3-rgb: 251, 113, 133;
+  --c4-rgb: 52, 211, 153;
+  --c5-rgb: 96, 165, 250;
+}
+
+/* Sélecteur de palette : styles des boutons à placer dans la page */
+.palette-picker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.palette-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 13px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  transition: transform var(--transition-fast), border-color var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+.palette-option:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.palette-option[aria-pressed="true"] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.16);
+}
+
+.palette-swatch {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.palette-swatch i {
+  display: block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.palette-option[data-palette-choice="ocean"] .palette-swatch i:nth-child(1) { background: #38bdf8; }
+.palette-option[data-palette-choice="ocean"] .palette-swatch i:nth-child(2) { background: #2dd4bf; }
+.palette-option[data-palette-choice="violet"] .palette-swatch i:nth-child(1) { background: #a78bfa; }
+.palette-option[data-palette-choice="violet"] .palette-swatch i:nth-child(2) { background: #e879f9; }
+.palette-option[data-palette-choice="emerald"] .palette-swatch i:nth-child(1) { background: #34d399; }
+.palette-option[data-palette-choice="emerald"] .palette-swatch i:nth-child(2) { background: #a3e635; }
+.palette-option[data-palette-choice="sunset"] .palette-swatch i:nth-child(1) { background: #fb923c; }
+.palette-option[data-palette-choice="sunset"] .palette-swatch i:nth-child(2) { background: #f43f5e; }
+.palette-option[data-palette-choice="rose"] .palette-swatch i:nth-child(1) { background: #fb7185; }
+.palette-option[data-palette-choice="rose"] .palette-swatch i:nth-child(2) { background: #f0abfc; }
+.palette-option[data-palette-choice="amber"] .palette-swatch i:nth-child(1) { background: #fbbf24; }
+.palette-option[data-palette-choice="amber"] .palette-swatch i:nth-child(2) { background: #f97316; }
+
+/* Finitions visuelles supplémentaires */
+.skill-card,
+.project-card,
+.cert-card,
+.timeline-content,
+.diplome-focus,
+.synthese-pdf,
+.veille-single,
+.contact-form {
+  box-shadow: var(--shadow-card);
+}
+
+.skill-card,
+.project-card,
+.cert-card,
+.timeline-content,
+.eval-item,
+.contact-form,
+.diplome-focus,
+.synthese-pdf,
+.veille-single {
+  transition: background-color var(--transition-medium),
+              border-color var(--transition-fast),
+              box-shadow var(--transition-fast),
+              transform var(--transition-fast);
+}
+
+::selection {
+  background: rgba(var(--accent-rgb), 0.32);
+  color: var(--text-primary);
+}
+
+@media (max-width: 480px) {
+  .palette-picker { gap: 8px; padding: 12px; }
+  .palette-option { flex: 1 1 calc(50% - 8px); justify-content: center; }
+}
+
+
 /* ==========================================================================
    2. BASE
    ========================================================================== */
