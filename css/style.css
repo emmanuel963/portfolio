@@ -1,11 +1,25 @@
 /* ==========================================================================
-   PORTFOLIO — FEUILLE DE STYLE
+   PORTFOLIO — FEUILLE DE STYLE (version consolidée)
    Palette : bleu nuit + indigo + cyan (identité systèmes / réseaux / cyber)
-   Pour changer les couleurs, modifie UNIQUEMENT le bloc "VARIABLES CSS".
+
+   Pour changer les couleurs, modifie UNIQUEMENT le bloc "1. VARIABLES".
+
+   SOMMAIRE
+    1. Variables            9. Diplôme
+    2. Base                10. Synthèse & Veille (PDF)
+    3. Boutons             11. Compétences
+    4. Navbar              12. Projets E5 / E6
+    5. Hero                13. Certifications
+    6. Sections            14. Contact
+    7. À propos            15. Footer
+    8. Timeline            16. Animations
+                           17. Responsive
+                           18. Accessibilité (animations réduites)
    ========================================================================== */
 
+
 /* ==========================================================================
-   VARIABLES CSS
+   1. VARIABLES
    ========================================================================== */
 :root {
   /* ---- Thème sombre (par défaut) ---- */
@@ -19,7 +33,7 @@
   --text-secondary: #a9b6d6;
   --text-muted: #7482a6;
 
-  /* Couleur d'accent principale (indigo clair) et secondaire (cyan) */
+  /* Accent principal (indigo clair) et secondaire (cyan) */
   --accent: #8b9cff;
   --accent-rgb: 139, 156, 255;
   --accent-secondary: #22d3ee;
@@ -28,12 +42,12 @@
   /* Texte posé sur un fond d'accent (boutons) */
   --on-accent: #050a1a;
 
-  /* Couleurs des 5 cartes de compétences (format R, G, B) */
-  --c1-rgb: 139, 156, 255;   /* indigo  */
-  --c2-rgb: 34, 211, 238;    /* cyan    */
-  --c3-rgb: 192, 132, 252;   /* violet  */
+  /* Couleurs des cartes de compétences et des épreuves (format R, G, B) */
+  --c1-rgb: 139, 156, 255;   /* indigo   */
+  --c2-rgb: 34, 211, 238;    /* cyan     */
+  --c3-rgb: 192, 132, 252;   /* violet   */
   --c4-rgb: 52, 211, 153;    /* émeraude */
-  --c5-rgb: 251, 113, 133;   /* rose    */
+  --c5-rgb: 251, 113, 133;   /* rose     */
 
   --danger: #fb7185;
   --success: #34d399;
@@ -90,13 +104,15 @@
   --shadow-card: 0 4px 22px rgba(18, 26, 51, 0.07);
 }
 
+
 /* ==========================================================================
-   RESET & BASE
+   2. BASE
    ========================================================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
   scrollbar-color: var(--border-color) var(--bg-primary);
 }
 
@@ -112,15 +128,10 @@ body {
 ::selection { background: rgba(var(--accent-rgb), 0.3); color: var(--text-primary); }
 
 img { max-width: 100%; display: block; }
-
 a { color: inherit; text-decoration: none; }
-
 ul { list-style: none; }
-
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-
 input, textarea { font-family: inherit; }
-
 h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.2; }
 
 .container {
@@ -131,7 +142,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 
 .accent { color: var(--accent); }
 
-/* Skip link (accessibilité clavier) */
+/* Lien d'évitement (accessibilité clavier) */
 .skip-link {
   position: absolute;
   top: -50px;
@@ -146,17 +157,20 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height
 }
 .skip-link:focus { top: 12px; }
 
-/* Focus visible pour navigation clavier */
+/* Focus visible pour la navigation clavier */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
+
 /* ==========================================================================
-   BOUTONS
+   3. BOUTONS
    ========================================================================== */
 .btn {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -165,11 +179,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 0.95rem;
+  white-space: nowrap;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast),
               background-color var(--transition-fast), color var(--transition-fast),
               border-color var(--transition-fast);
-  white-space: nowrap;
 }
+
+.btn-small { padding: 9px 18px; font-size: 0.85rem; }
 
 .btn-primary {
   background: var(--gradient-accent);
@@ -177,6 +193,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: 0 6px 22px rgba(var(--accent-rgb), 0.38);
 }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(var(--accent-rgb), 0.5); }
+
+/* Reflet lumineux au survol */
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+}
+.btn-primary:hover::after { animation: shine 0.8s ease; }
 
 .btn-outline {
   border: 1.5px solid var(--border-color);
@@ -190,10 +217,37 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transform: translateY(-2px);
 }
 
-.btn-small { padding: 9px 18px; font-size: 0.85rem; }
+/* Bouton Google Alertes */
+.btn-alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--border-color);
+  color: var(--text-secondary);
+  background: transparent;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 10px 0 6px;
+  transition: transform var(--transition-fast), border-color var(--transition-fast),
+              color var(--transition-fast), background-color var(--transition-fast);
+}
+.btn-alert:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+  transform: translateY(-2px);
+}
+.btn-alert svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
 
 /* ==========================================================================
-   NAVBAR
+   4. NAVBAR
+   Onglets en majuscules, taille fluide selon la largeur de l'écran.
+   - 1200 px et + : barre complète
+   - moins de 1200 px : menu hamburger
+   - de 1200 à 1499 px : libellés raccourcis (.nav-long masqué)
    ========================================================================== */
 .navbar {
   position: fixed;
@@ -205,21 +259,23 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-bottom: 1px solid var(--border-color);
   transition: background-color var(--transition-medium), box-shadow var(--transition-medium);
 }
+.navbar.scrolled { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25); }
 
 .nav-container {
-  max-width: 1320px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 14px clamp(20px, 3vw, 48px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: clamp(12px, 1.5vw, 28px);
   transition: padding var(--transition-medium);
 }
+.navbar.scrolled .nav-container { padding-top: 9px; padding-bottom: 9px; }
 
 .nav-logo {
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: clamp(1.15rem, 0.7rem + 0.45vw, 1.45rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   white-space: nowrap;
@@ -227,16 +283,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .nav-links {
   display: flex;
+  flex: 1;
   align-items: center;
-  gap: 18px;
-  white-space: nowrap;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: clamp(10px, 1.2vw, 28px);
 }
 
 .nav-link {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
   position: relative;
   padding: 4px 0;
+  font-size: clamp(0.68rem, 0.45rem + 0.3vw, 0.82rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;           /* empêche « À PROPOS » de passer sur 2 lignes */
+  color: var(--text-secondary);
   transition: color var(--transition-fast);
 }
 .nav-link::after {
@@ -251,10 +313,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .nav-link:hover, .nav-link.active { color: var(--text-primary); }
 .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
-.nav-actions { display: flex; align-items: center; gap: 12px; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.nav-actions .btn-small { padding: 8px 13px; font-size: 0.78rem; }
 
 .theme-toggle {
-  width: 40px; height: 40px;
+  width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
   border-radius: 50%;
   border: 1px solid var(--border-color);
@@ -285,10 +348,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Navbar compacte après le scroll */
-.navbar.scrolled { box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25); }
-.navbar.scrolled .nav-container { padding-top: 9px; padding-bottom: 9px; }
-
 /* Barre de progression de lecture */
 .scroll-progress {
   position: fixed;
@@ -300,8 +359,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transition: width 0.1s linear;
 }
 
+
 /* ==========================================================================
-   HERO
+   5. HERO
    ========================================================================== */
 .hero {
   position: relative;
@@ -319,8 +379,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     radial-gradient(circle at 12% 18%, rgba(var(--accent-rgb), 0.22), transparent 46%),
     radial-gradient(circle at 88% 78%, rgba(var(--accent-secondary-rgb), 0.16), transparent 46%);
   z-index: -1;
+  animation: bgDrift 14s ease-in-out infinite alternate;
 }
 
+/* Réseau animé (dessiné par le JavaScript) */
 .network-canvas {
   position: absolute;
   inset: 0;
@@ -374,9 +436,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   margin-bottom: 18px;
   min-height: 1.6em;
 }
-
 .typing-text { color: var(--accent-secondary); font-weight: 600; }
-
 .typing-cursor {
   display: inline-block;
   width: 2px;
@@ -387,11 +447,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   animation: blink 1s steps(1) infinite;
 }
 
-.hero-desc {
-  color: var(--text-secondary);
-  max-width: 540px;
-  margin-bottom: 30px;
-}
+.hero-desc { color: var(--text-secondary); max-width: 540px; margin-bottom: 30px; }
 
 .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 30px; }
 
@@ -411,8 +467,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-color: var(--accent);
   background: rgba(var(--accent-rgb), 0.14);
   transform: translateY(-3px);
+  animation: popIcon 0.4s ease;
 }
 
+/* Photo de profil */
 .hero-photo-frame {
   position: relative;
   width: min(340px, 100%);
@@ -424,7 +482,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: 0 0 60px rgba(var(--accent-rgb), 0.28), var(--shadow-soft);
   animation: floatPhoto 6s ease-in-out infinite;
 }
-
 .hero-photo-frame::before {
   content: "";
   position: absolute;
@@ -433,7 +490,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border: 1px dashed rgba(var(--accent-rgb), 0.5);
   animation: spinSlow 22s linear infinite;
 }
-
 .hero-photo {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -451,8 +507,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   animation: bounce 2s infinite;
 }
 
+
 /* ==========================================================================
-   SECTIONS GÉNÉRIQUES
+   6. SECTIONS GÉNÉRIQUES
    ========================================================================== */
 .section { padding: 110px 0; }
 .section-alt { background: var(--bg-secondary); }
@@ -464,7 +521,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   padding-bottom: 14px;
   text-align: center;
 }
-
 .section-title::after {
   content: "";
   position: absolute;
@@ -483,8 +539,23 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   margin-bottom: 50px;
 }
 
+/* Étiquettes (diplôme, veille…) */
+.diplome-tag, .veille-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
+}
+
+
 /* ==========================================================================
-   À PROPOS
+   7. À PROPOS
    ========================================================================== */
 .about-grid {
   display: grid;
@@ -509,8 +580,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   color: var(--accent-secondary);
 }
 
+
 /* ==========================================================================
-   TIMELINE (Formation / Parcours)
+   8. TIMELINE (Formation / Parcours)
    ========================================================================== */
 .timeline {
   position: relative;
@@ -571,8 +643,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   color: var(--text-secondary);
 }
 
+
 /* ==========================================================================
-   FOCUS SUR LE DIPLÔME (BTS SIO SISR)
+   9. FOCUS SUR LE DIPLÔME (BTS SIO SISR)
    ========================================================================== */
 .diplome-focus {
   max-width: 980px;
@@ -585,48 +658,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .diplome-header { text-align: center; margin-bottom: 26px; }
-
-.diplome-tag, .veille-tag {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: rgba(var(--accent-rgb), 0.12);
-  color: var(--accent);
-  border: 1px solid rgba(var(--accent-rgb), 0.3);
-}
 .diplome-tag { margin-bottom: 14px; }
-
 .diplome-header h3 { font-size: 1.45rem; line-height: 1.25; }
-
-.diplome-option {
-  color: var(--accent-secondary);
-  font-weight: 600;
-  font-size: 0.98rem;
-  margin-top: 6px;
-}
+.diplome-option { color: var(--accent-secondary); font-weight: 600; font-size: 0.98rem; margin-top: 6px; }
 
 .diplome-intro {
   border-left: 3px solid var(--accent);
   padding-left: 20px;
   margin-bottom: 34px;
 }
-
-.diplome-intro p {
-  color: var(--text-secondary);
-  font-size: 0.94rem;
-  margin-bottom: 12px;
-}
+.diplome-intro p { color: var(--text-secondary); font-size: 0.94rem; margin-bottom: 12px; }
 .diplome-intro p:last-child { margin-bottom: 0; }
 
-.diplome-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 34px;
-}
+.diplome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
 
 .diplome-block h4 {
   font-size: 1.02rem;
@@ -635,40 +679,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-bottom: 1px solid var(--border-color);
 }
 
-.diplome-list li {
-  position: relative;
-  padding-left: 22px;
-  margin-bottom: 16px;
-}
-
+.diplome-list li { position: relative; padding-left: 22px; margin-bottom: 16px; }
 .diplome-list li::before {
   content: "▹";
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 0; top: 0;
   color: var(--accent-secondary);
 }
+.diplome-list strong { display: block; font-size: 0.9rem; margin-bottom: 3px; color: var(--text-primary); }
+.diplome-list span { display: block; font-size: 0.87rem; color: var(--text-secondary); line-height: 1.55; }
 
-.diplome-list strong {
-  display: block;
-  font-size: 0.9rem;
-  margin-bottom: 3px;
-  color: var(--text-primary);
-}
-
-.diplome-list span {
-  display: block;
-  font-size: 0.87rem;
-  color: var(--text-secondary);
-  line-height: 1.55;
-}
-
-.diplome-eval {
-  margin-top: 34px;
-  padding-top: 28px;
-  border-top: 1px solid var(--border-color);
-}
-
+.diplome-eval { margin-top: 34px; padding-top: 28px; border-top: 1px solid var(--border-color); }
 .diplome-eval h4 { font-size: 1.02rem; margin-bottom: 18px; }
 
 .eval-items {
@@ -676,7 +697,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 16px;
 }
-
 .eval-item {
   display: flex;
   align-items: flex-start;
@@ -688,12 +708,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transition: border-color var(--transition-fast), transform var(--transition-fast);
 }
 .eval-item:hover { border-color: var(--accent); transform: translateY(-3px); }
-
 .eval-icon { font-size: 1.15rem; line-height: 1.4; }
 .eval-item p { font-size: 0.86rem; color: var(--text-secondary); }
 
+
 /* ==========================================================================
-   TABLEAU DE SYNTHÈSE (format PDF) + VEILLE (format unique avec PDF)
+   10. TABLEAU DE SYNTHÈSE + VEILLE (blocs avec aperçu PDF)
    ========================================================================== */
 .synthese-pdf, .veille-single {
   display: grid;
@@ -707,46 +727,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: var(--shadow-card);
 }
 
-.synthese-infos h3 {
-  font-size: 1.4rem;
-  margin: 12px 0 16px;
-  line-height: 1.3;
-}
-.synthese-infos p {
-  color: var(--text-secondary);
-  font-size: 0.94rem;
-  margin-bottom: 10px;
-}
+.synthese-infos h3 { font-size: 1.4rem; margin: 12px 0 16px; line-height: 1.3; }
+.synthese-infos p { color: var(--text-secondary); font-size: 0.94rem; margin-bottom: 10px; }
 
-.veille-infos h3 {
-  font-size: 1.5rem;
-  margin: 10px 0 12px;
-  line-height: 1.25;
-}
-.veille-infos h4 {
-  font-size: 0.98rem;
-  margin: 22px 0 6px;
-  color: var(--accent-secondary);
-}
-.veille-infos p { color: var(--text-secondary); font-size: 0.93rem; }
+.veille-infos h3 { font-size: 1.5rem; margin: 10px 0 12px; line-height: 1.25; }
+.veille-infos h4 { font-size: 0.98rem; margin: 22px 0 6px; color: var(--accent-secondary); }
+.veille-infos p { color: var(--text-secondary); font-size: 0.93rem; margin-bottom: 10px; }
 
-.veille-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  margin-bottom: 4px;
-}
+.veille-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.85rem; margin-bottom: 4px; }
 .veille-date, .veille-sep { color: var(--text-muted); }
 .veille-source { color: var(--accent); }
 
-.veille-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 28px;
-}
+.veille-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 
 /* Cadre d'aperçu du PDF */
 .pdf-frame {
@@ -758,13 +750,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background: var(--bg-elevated);
   box-shadow: var(--shadow-card);
 }
-
-.pdf-frame object {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
+.pdf-frame object { width: 100%; height: 100%; border: none; display: block; }
 
 .pdf-fallback {
   height: 100%;
@@ -778,39 +764,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .pdf-fallback p { color: var(--text-secondary); font-size: 0.9rem; }
 
-.pdf-caption {
-  margin-top: 12px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  text-align: center;
-}
+.pdf-caption { margin-top: 12px; font-size: 0.8rem; color: var(--text-muted); text-align: center; }
 
-/* Bouton Google Alertes */
-.btn-alert {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1.5px solid var(--border-color);
-  color: var(--text-secondary);
-  background: transparent;
-  padding: 9px 18px;
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin: 10px 0 6px;
-  transition: transform var(--transition-fast), border-color var(--transition-fast),
-              color var(--transition-fast), background-color var(--transition-fast);
-}
-.btn-alert:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(var(--accent-rgb), 0.08);
-  transform: translateY(-2px);
-}
-.btn-alert svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
 
 /* ==========================================================================
-   COMPÉTENCES — une couleur par catégorie
+   11. COMPÉTENCES — une couleur par catégorie
    ========================================================================== */
 .skills-grid {
   display: grid;
@@ -853,9 +811,71 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .badge:hover { transform: scale(1.06); }
 
+/* Badges en cascade à l'apparition de la carte */
+.skill-card:not(.visible) .badge { opacity: 0; }
+.skill-card.visible .badge {
+  animation: badgeIn 0.5s ease backwards;
+  animation-delay: var(--d, 0ms);
+}
+
+
 /* ==========================================================================
-   PROJETS
+   12. PROJETS — blocs E5 / E6
    ========================================================================== */
+/* Couleur propre à chaque épreuve (E5 = indigo, E6 = cyan) */
+.projets-groupe--e5, .switch-link--e5 { --g-rgb: var(--c1-rgb); }
+.projets-groupe--e6, .switch-link--e6 { --g-rgb: var(--c2-rgb); }
+
+/* Accès rapide sous le sous-titre */
+.projets-switch {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: -26px 0 54px;
+}
+.switch-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--g-rgb), 0.45);
+  background: rgba(var(--g-rgb), 0.1);
+  color: rgb(var(--g-rgb));
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+.switch-link:hover { transform: translateY(-2px); background: rgba(var(--g-rgb), 0.2); }
+
+/* Un bloc par épreuve */
+.projets-groupe { scroll-margin-top: 100px; }
+.projets-groupe + .projets-groupe { margin-top: 80px; }
+
+.groupe-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+.groupe-badge {
+  flex-shrink: 0;
+  width: 58px; height: 58px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  background: rgba(var(--g-rgb), 0.14);
+  color: rgb(var(--g-rgb));
+  border: 1px solid rgba(var(--g-rgb), 0.4);
+}
+.groupe-title { font-size: 1.3rem; line-height: 1.25; }
+.groupe-desc { color: var(--text-secondary); font-size: 0.92rem; margin-top: 4px; }
+
+/* Cartes projet */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -865,6 +885,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .project-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
+  border-top: 3px solid rgba(var(--g-rgb, var(--accent-rgb)), 0.85);
   border-radius: var(--radius-md);
   overflow: hidden;
   display: flex;
@@ -873,11 +894,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .project-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(var(--accent-rgb), 0.5);
-  box-shadow: 0 16px 38px rgba(var(--accent-rgb), 0.16);
+  border-color: rgba(var(--g-rgb, var(--accent-rgb)), 0.55);
+  border-top-color: rgba(var(--g-rgb, var(--accent-rgb)), 0.85);
+  box-shadow: 0 16px 38px rgba(var(--g-rgb, var(--accent-rgb)), 0.16);
 }
 
-.project-image { aspect-ratio: 16/9; overflow: hidden; background: var(--bg-elevated); }
+.project-image { aspect-ratio: 16 / 9; overflow: hidden; background: var(--bg-elevated); }
 .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-medium); }
 .project-card:hover .project-image img { transform: scale(1.06); }
 
@@ -887,8 +909,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .project-skills { font-size: 0.85rem; }
 .project-body .cert-actions { margin-top: auto; padding-top: 6px; width: 100%; }
 
+
 /* ==========================================================================
-   CERTIFICATIONS
+   13. CERTIFICATIONS
    ========================================================================== */
 .cert-grid {
   display: grid;
@@ -911,12 +934,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: 0 14px 32px rgba(var(--accent-secondary-rgb), 0.14);
 }
 
-/* Petit indicateur PDF au survol */
+/* Indicateur PDF au survol */
 .cert-card::after {
   content: "PDF";
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 12px; right: 12px;
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -937,16 +959,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .cert-org + .cert-actions { margin-top: 16px; }
 
 /* Boutons d'action (certifications et projets) */
-.cert-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-}
+.cert-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 .cert-actions .btn { flex: 1 1 auto; min-width: 130px; }
 
+
 /* ==========================================================================
-   CONTACT
+   14. CONTACT
    ========================================================================== */
 .contact-grid {
   display: grid;
@@ -974,8 +992,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-radius: var(--radius-sm);
   padding: 12px 14px;
   color: var(--text-primary);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
   resize: vertical;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 .form-group input:focus, .form-group textarea:focus {
   border-color: var(--accent);
@@ -985,12 +1003,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .form-error { font-size: 0.8rem; color: var(--danger); min-height: 1em; }
 
-.form-note {
-  font-size: 0.9rem;
-  padding: 10px 14px;
-  border-radius: var(--radius-sm);
-  display: none;
-}
+.form-note { font-size: 0.9rem; padding: 10px 14px; border-radius: var(--radius-sm); display: none; }
 .form-note.visible { display: block; }
 .form-note.success { background: rgba(52, 211, 153, 0.12); color: var(--success); display: block; }
 .form-note.info { background: rgba(var(--accent-rgb), 0.12); color: var(--accent); display: block; }
@@ -1023,8 +1036,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   filter: invert(90%) hue-rotate(180deg) brightness(0.95) contrast(0.9);
 }
 
+
 /* ==========================================================================
-   FOOTER
+   15. FOOTER
    ========================================================================== */
 .footer {
   background: var(--bg-secondary);
@@ -1070,8 +1084,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .back-to-top:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
 
+
 /* ==========================================================================
-   ANIMATIONS
+   16. ANIMATIONS
    ========================================================================== */
 @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 @keyframes blink { 50% { opacity: 0; } }
@@ -1104,7 +1119,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   to   { opacity: 1; transform: none; }
 }
 
-/* Apparition au scroll */
+/* Apparition au scroll (la classe .visible est ajoutée par le JavaScript) */
 .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.9s ease forwards; }
 
 .fade-in-up {
@@ -1119,9 +1134,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .fade-in-right { transform: translateX(30px); }
 .fade-in-left.visible, .fade-in-right.visible { opacity: 1; transform: translateX(0); }
 
-/* Hero : fond qui respire + apparition échelonnée du texte */
-.hero-bg { animation: bgDrift 14s ease-in-out infinite alternate; }
-
+/* Hero : apparition échelonnée du texte */
 .hero-text > * {
   opacity: 0;
   transform: translateY(18px);
@@ -1135,21 +1148,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hero-text > :nth-child(6) { animation-delay: 0.85s; }
 .hero-text > :nth-child(7) { animation-delay: 1s; }
 
-/* Boutons principaux : reflet lumineux au survol */
-.btn-primary { position: relative; overflow: hidden; }
-.btn-primary::after {
-  content: "";
-  position: absolute;
-  top: 0; left: -75%;
-  width: 50%; height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  transform: skewX(-20deg);
-}
-.btn-primary:hover::after { animation: shine 0.8s ease; }
-
-.social-icon:hover { animation: popIcon 0.4s ease; }
-
-/* Cartes interactives (halo qui suit la souris + inclinaison 3D) */
+/* Cartes interactives : halo qui suit la souris + inclinaison 3D (JavaScript) */
 .fx-card { position: relative; }
 .fx-card::before {
   content: "";
@@ -1172,24 +1171,30 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   will-change: transform;
 }
 
-/* Badges de compétences en cascade */
-.skill-card:not(.visible) .badge { opacity: 0; }
-.skill-card.visible .badge {
-  animation: badgeIn 0.5s ease backwards;
-  animation-delay: var(--d, 0ms);
-}
 
 /* ==========================================================================
-   RESPONSIVE
+   17. RESPONSIVE
    ========================================================================== */
 
+/* De 1200 à 1499 px : libellés raccourcis pour que tous les onglets tiennent */
+@media (min-width: 1200px) and (max-width: 1499px) {
+  .nav-long { display: none; }
+}
 
-/* Menu hamburger sous 1200 px (la barre complète ne tient pas en dessous) */
+/* Très grand écran : version aérée */
+@media (min-width: 1600px) {
+  .nav-link { letter-spacing: 0.06em; }
+  .nav-actions .btn-small { padding: 9px 18px; font-size: 0.85rem; }
+  .theme-toggle { width: 40px; height: 40px; }
+}
+
+/* Menu hamburger sous 1200 px */
 @media (max-width: 1199px) {
   .nav-links {
     position: fixed;
     top: 68px;
     right: 0;
+    flex: none;
     height: calc(100vh - 68px);
     width: min(300px, 80vw);
     background: var(--bg-secondary);
@@ -1197,6 +1202,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     box-shadow: -12px 0 30px rgba(0, 0, 0, 0.25);
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
     padding: 30px 26px;
     gap: 20px;
     transform: translateX(100%);
@@ -1204,7 +1210,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     overflow-y: auto;
   }
   .nav-links.open { transform: translateX(0); }
-  .nav-link { font-size: 1rem; }
+  .nav-link { font-size: 1rem; letter-spacing: 0.05em; }
+  .nav-actions { margin-left: auto; }
   .hamburger { display: flex; }
 }
 
@@ -1234,7 +1241,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 @media (max-width: 640px) {
-  .nav-actions .btn-outline.btn-small { display: none; }
+  .nav-actions .btn-small { display: none; }
+}
+
+@media (max-width: 600px) {
+  .groupe-header { flex-direction: column; align-items: flex-start; }
+  .groupe-title { font-size: 1.15rem; }
 }
 
 @media (max-width: 480px) {
@@ -1245,15 +1257,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .cert-actions .btn, .veille-actions .btn { flex: 1 1 100%; }
 }
 
+
 /* ==========================================================================
-   ACCESSIBILITÉ : réduction des animations
+   18. ACCESSIBILITÉ — réduction des animations
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
-  .hero-bg, .hero-photo-frame, .hero-photo-frame::before,
-  .timeline-dot, .hero-text > *, .btn-primary:hover::after,
-  .social-icon:hover, .scroll-indicator, .typing-cursor {
+  .hero-bg, .hero-photo-frame, .hero-photo-frame::before, .timeline-dot,
+  .hero-text > *, .btn-primary:hover::after, .social-icon:hover,
+  .scroll-indicator, .typing-cursor {
     animation: none !important;
   }
 
@@ -1270,53 +1283,4 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .skill-card.visible .badge { animation: none; }
   .fx-card::before { display: none; }
   .section-title::after { width: 60px; transition: none; }
-}
-
-/* ==========================================================================
-   NAVBAR — onglets en majuscules (taille fluide selon la largeur de l'écran)
-   ========================================================================== */
-
-/* Tous écrans */
-.nav-logo { white-space: nowrap; }
-
-.nav-link {
-  text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  white-space: nowrap;   /* empêche « À PROPOS » de passer sur 2 lignes */
-}
-
-/* Ordinateur : la barre complète s'affiche à partir de 1200 px */
-@media (min-width: 1200px) {
-  .nav-container {
-    max-width: 1600px;
-    padding: 14px clamp(20px, 3vw, 48px);
-    gap: clamp(12px, 1.5vw, 28px);
-  }
-
-  .nav-logo { font-size: clamp(1.15rem, 0.7rem + 0.45vw, 1.45rem); }
-
-  .nav-links {
-    flex: 1;
-    justify-content: center;
-    flex-wrap: nowrap;
-    gap: clamp(10px, 1.2vw, 28px);
-  }
-
-  .nav-link {
-    font-size: clamp(0.68rem, 0.45rem + 0.3vw, 0.82rem);
-    letter-spacing: 0.04em;
-  }
-
-  /* Boutons de droite un peu plus compacts pour laisser la place aux onglets */
-  .nav-actions { gap: 8px; }
-  .nav-actions .btn-small { padding: 8px 13px; font-size: 0.78rem; }
-  .theme-toggle { width: 36px; height: 36px; }
-}
-
-/* Très grand écran : version aérée */
-@media (min-width: 1600px) {
-  .nav-link { letter-spacing: 0.06em; }
-  .nav-actions .btn-small { padding: 9px 18px; font-size: 0.85rem; }
-  .theme-toggle { width: 40px; height: 40px; }
 }
