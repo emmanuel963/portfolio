@@ -387,31 +387,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-const paletteButtons = document.querySelectorAll(
-    ".palette-option"
-);
 
-function setPalette(palette) {
-    document.documentElement.dataset.palette = palette;
-
-    localStorage.setItem("portfolio-palette", palette);
-
-    paletteButtons.forEach(button => {
-        button.setAttribute(
-            "aria-pressed",
-            button.dataset.paletteChoice === palette
-        );
-    });
-}
-
-// Changement de palette
-paletteButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        setPalette(button.dataset.paletteChoice);
-    });
-});
-
-// Restaurer la dernière palette choisie
-const savedPalette = localStorage.getItem("portfolio-palette");
-
-setPalette(savedPalette || "ocean");
