@@ -16,6 +16,22 @@
 
   <!-- Favicon intégré (aucun fichier à ajouter) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <!-- Applique le thème et les couleurs choisis AVANT l'affichage (évite un flash) -->
+  <script>
+    (function () {
+      try {
+        var d = document.documentElement;
+        var modes = { night: 'dark', black: 'dark', graphite: 'dark', light: 'light', cream: 'light' };
+        var t = localStorage.getItem('portfolio-theme');
+        var p = localStorage.getItem('portfolio-palette');
+        if (t === 'dark') t = 'night';
+        if (!modes[t]) t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'night';
+        d.setAttribute('data-theme', t);
+        d.setAttribute('data-mode', modes[t]);
+        if (p) d.setAttribute('data-palette', p);
+      } catch (e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="css/style.css">
 
   <!-- Google Fonts (optionnel, retirer si besoin de rester 100% hors-ligne) -->
@@ -42,12 +58,9 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#about" class="nav-link">À propos</a></li>
         <li><a href="#formation" class="nav-link">Formation</a></li>
-        <li><a href="#parcours" class="nav-link">Parcours Professionnels<span class="nav-long"> Professionnels</span></a></li>
-        <li><a href="#synthese" class="nav-link"><span class="nav-long">Tableau de Synthèse</span>Tableau de Synthèse</a></li>
         <li><a href="#competences" class="nav-link">Compétences</a></li>
         <li><a href="#projets" class="nav-link">Projets E5/E6</a></li>
-        <li><a href="#certifications" class="nav-link">Certifications</a></li>
-        <li><a href="#veille" class="nav-link">Veille Technologique<span class="nav-long"> Technologique</span></a></li>
+        <li><a href="#veille" class="nav-link">Veille technologique</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
 
@@ -321,126 +334,7 @@
       </div>
     </section>
 
-    <!-- ========================= -->
-    <!-- PARCOURS PROFESSIONNEL    -->
-    <!-- ========================= -->
-    <section id="parcours" class="section">
-      <div class="container">
-        <h2 class="section-title">Mon <span class="accent">Parcours</span></h2>
-        <p class="section-subtitle">Expériences professionnelles</p>
 
-        <div class="timeline">
-          <!-- Dupliquez un bloc .timeline-item pour ajouter une expérience -->
-
-          <div class="timeline-item fade-in-up">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-period">Décembre 2025 – Février 2026</span>
-              <h3>Technicien Support Informatique</h3>
-              <p class="timeline-place">KLN — Pointe-Noire</p>
-              <ul class="about-list">
-                <li>Installation et configuration de Windows Server 2022</li>
-                <li>Mise en place et administration d'un domaine Active Directory</li>
-                <li>Organisation des utilisateurs et ordinateurs dans des unités d'organisation (OU)</li>
-                <li>Intégration des postes clients Windows au domaine</li>
-                <li>Synchronisation des utilisateurs Active Directory avec GLPI via LDAP</li>
-              </ul>
-              <div class="tag-list">
-                <span class="tag">Windows Server 2022</span>
-                <span class="tag">Active Directory</span>
-                <span class="tag">GLPI</span>
-                <span class="tag">LDAP</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="timeline-item fade-in-up">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <span class="timeline-period">Mai 2025 – Juin 2025</span>
-              <h3>Technicien Support Informatique</h3>
-              <p class="timeline-place">F2I — Vincennes</p>
-              <ul class="about-list">
-                <li>Installation et configuration de GLPI pour la gestion centralisée du parc informatique</li>
-                <li>Installation et configuration de Windows Server 2022</li>
-                <li>Ajout des postes au domaine Active Directory et création de comptes utilisateurs et accès</li>
-                <li>Configuration et administration des services DNS et DHCP</li>
-              </ul>
-              <div class="tag-list">
-                <span class="tag">GLPI</span>
-                <span class="tag">Windows Server 2022</span>
-                <span class="tag">Active Directory</span>
-                <span class="tag">DNS</span>
-                <span class="tag">DHCP</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- TABLEAU DE SYNTHÈSE       -->
-    <!-- ========================= -->
-    <section id="synthese" class="section section-alt">
-      <div class="container">
-        <h2 class="section-title">Tableau de <span class="accent">Synthèse</span></h2>
-        <p class="section-subtitle">Compétences validées dans le cadre du BTS SIO — SISR</p>
-
-        <div class="synthese-pdf fade-in-up">
-
-          <!-- Colonne gauche : présentation + actions -->
-          <div class="synthese-infos">
-            <span class="veille-tag">Document officiel</span>
-            <h3>Tableau de synthèse des compétences</h3>
-            <p>
-              Ce document récapitule, pour chaque compétence du référentiel BTS SIO — SISR, les projets et
-              situations professionnelles rencontrés, le contexte, les technologies utilisées, les missions
-              réalisées et les résultats obtenus.
-            </p>
-
-            <div class="veille-actions">
-              <!-- Dépose ton PDF dans Document/Synthese/ (ou adapte le chemin) -->
-              <a href="Document/Synthese/tableau-synthese.pdf"
-                 class="btn btn-primary"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Ouvrir le tableau (PDF)
-              </a>
-              <a href="Document/Synthese/tableau-synthese.pdf"
-                 class="btn btn-outline"
-                 download
-                 aria-label="Télécharger le tableau de synthèse au format PDF">
-                Télécharger
-              </a>
-            </div>
-          </div>
-
-          <!-- Colonne droite : aperçu du PDF -->
-          <div class="synthese-preview">
-            <div class="pdf-frame">
-              <object data="Document/Synthese/tableau-synthese.pdf#view=FitH"
-                      type="application/pdf"
-                      aria-label="Aperçu du tableau de synthèse des compétences">
-                <!-- Affiché si le navigateur ne sait pas lire les PDF (fréquent sur mobile) -->
-                <div class="pdf-fallback">
-                  <p>L'aperçu du PDF ne peut pas s'afficher dans ce navigateur.</p>
-                  <a href="Document/Synthese/tableau-synthese.pdf"
-                     class="btn btn-small btn-primary"
-                     target="_blank"
-                     rel="noopener noreferrer">
-                    Ouvrir le PDF
-                  </a>
-                </div>
-              </object>
-            </div>
-            <p class="pdf-caption">Aperçu du document — cliquez sur « Ouvrir le tableau » pour la version complète.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
 
     <!-- ========================= -->
     <!-- COMPÉTENCES               -->
@@ -448,7 +342,7 @@
     <section id="competences" class="section">
       <div class="container">
         <h2 class="section-title">Mes <span class="accent">Compétences</span></h2>
-        <p class="section-subtitle">Technologies et outils maîtrisés</p>
+        <p class="section-subtitle">Technologies, outils et certifications</p>
 
         <div class="skills-grid">
           <div class="skill-card fade-in-up">
@@ -503,6 +397,76 @@
             </div>
           </div>
         </div>
+
+        <!-- ========== CERTIFICATIONS ========== -->
+        <div id="certifications" class="bloc bloc--cert">
+          <div class="bloc-header fade-in-up">
+            <span class="bloc-badge" aria-hidden="true">🎓</span>
+            <div>
+              <h3 class="bloc-title">Certifications</h3>
+              <p class="bloc-desc">Diplômes et attestations de réussite.</p>
+            </div>
+          </div>
+
+          <div class="cert-grid">
+
+            <div class="cert-card fade-in-up">
+              <img src="Image/Cisco3.png" alt="Logo Cisco" class="cert-logo">
+              <h3>Introduction à l’IoT (IdO) et à la transformation digitale</h3>
+              <p class="cert-org">CISCO</p>
+              <div class="cert-actions">
+                <a href="Document/Certification/Certification%201.pdf"
+                   class="btn btn-small btn-primary"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  Voir l'attestation (PDF)
+                </a>
+                <a href="Document/Certification/Certification%201.pdf"
+                   class="btn btn-small btn-outline"
+                   download
+                   aria-label="Télécharger l'attestation Introduction à l'IoT au format PDF">
+                  Télécharger
+                </a>
+              </div>
+            </div>
+
+            <div class="cert-card fade-in-up">
+              <img src="Image/Cisco3.png" alt="Logo Cisco" class="cert-logo">
+              <h3>Premiers pas avec Cisco Packet Tracer</h3>
+              <p class="cert-org">CISCO</p>
+              <div class="cert-actions">
+                <a href="Document/Certification/Certification%202.pdf"
+                   class="btn btn-small btn-primary"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  Voir l'attestation (PDF)
+                </a>
+                <a href="Document/Certification/Certification%202.pdf"
+                   class="btn btn-small btn-outline"
+                   download
+                   aria-label="Télécharger l'attestation Premiers pas avec Cisco Packet Tracer au format PDF">
+                  Télécharger
+                </a>
+              </div>
+            </div>
+
+            <!--
+              MODÈLE pour ajouter une certification : copie ce bloc en dehors du commentaire
+              (supprime les marqueurs de commentaire), puis remplace les valeurs.
+
+            <div class="cert-card fade-in-up">
+              <img src="Image/logo.png" alt="Logo de l'organisme" class="cert-logo">
+              <h3>Nom de la certification</h3>
+              <p class="cert-org">Organisme</p>
+              <div class="cert-actions">
+                <a href="Document/Certification/mon-fichier.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">Voir l'attestation (PDF)</a>
+                <a href="Document/Certification/mon-fichier.pdf" class="btn btn-small btn-outline" download>Télécharger</a>
+              </div>
+            </div>
+            -->
+
+          </div>
+        </div>
       </div>
     </section>
 
@@ -511,22 +475,84 @@
     <!-- ========================= -->
     <section id="projets" class="section section-alt">
       <div class="container">
-        <h2 class="section-title">Mes <span class="accent">Projets</span></h2>
-        <p class="section-subtitle">Réalisations techniques classées par épreuve du BTS SIO</p>
+        <h2 class="section-title">Projets <span class="accent">E5/E6</span></h2>
+        <p class="section-subtitle">Parcours professionnel, réalisations techniques et tableau de synthèse</p>
 
         <!-- Accès rapide -->
-        <div class="projets-switch">
+        <div class="bloc-switch">
+          <a href="#parcours" class="switch-link switch-link--parcours">Parcours professionnel</a>
           <a href="#projets-e5" class="switch-link switch-link--e5">Projets E5</a>
           <a href="#projets-e6" class="switch-link switch-link--e6">Projets E6</a>
+          <a href="#synthese" class="switch-link switch-link--synthese">Tableau de synthèse</a>
+        </div>
+
+        <!-- ========== PARCOURS PROFESSIONNEL (stages) ========== -->
+        <div id="parcours" class="bloc bloc--parcours">
+          <div class="bloc-header fade-in-up">
+            <span class="bloc-badge" aria-hidden="true">💼</span>
+            <div>
+              <h3 class="bloc-title">Parcours professionnel</h3>
+              <p class="bloc-desc">Mes stages et expériences en entreprise.</p>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <!-- Dupliquez un bloc .timeline-item pour ajouter une expérience -->
+
+            <div class="timeline-item fade-in-up">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <span class="timeline-period">Décembre 2025 – Février 2026</span>
+                <h3>Technicien Support Informatique</h3>
+                <p class="timeline-place">KLN — Pointe-Noire</p>
+                <ul class="about-list">
+                  <li>Installation et configuration de Windows Server 2022</li>
+                  <li>Mise en place et administration d'un domaine Active Directory</li>
+                  <li>Organisation des utilisateurs et ordinateurs dans des unités d'organisation (OU)</li>
+                  <li>Intégration des postes clients Windows au domaine</li>
+                  <li>Synchronisation des utilisateurs Active Directory avec GLPI via LDAP</li>
+                </ul>
+                <div class="tag-list">
+                  <span class="tag">Windows Server 2022</span>
+                  <span class="tag">Active Directory</span>
+                  <span class="tag">GLPI</span>
+                  <span class="tag">LDAP</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item fade-in-up">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <span class="timeline-period">Mai 2025 – Juin 2025</span>
+                <h3>Technicien Support Informatique</h3>
+                <p class="timeline-place">F2I — Vincennes</p>
+                <ul class="about-list">
+                  <li>Installation et configuration de GLPI pour la gestion centralisée du parc informatique</li>
+                  <li>Installation et configuration de Windows Server 2022</li>
+                  <li>Ajout des postes au domaine Active Directory et création de comptes utilisateurs et accès</li>
+                  <li>Configuration et administration des services DNS et DHCP</li>
+                </ul>
+                <div class="tag-list">
+                  <span class="tag">GLPI</span>
+                  <span class="tag">Windows Server 2022</span>
+                  <span class="tag">Active Directory</span>
+                  <span class="tag">DNS</span>
+                  <span class="tag">DHCP</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
         <!-- ========== E5 ========== -->
-        <div id="projets-e5" class="projets-groupe projets-groupe--e5">
-          <div class="groupe-header fade-in-up">
-            <span class="groupe-badge" aria-hidden="true">E5</span>
+        <div id="projets-e5" class="bloc bloc--e5">
+          <div class="bloc-header fade-in-up">
+            <span class="bloc-badge" aria-hidden="true">E5</span>
             <div>
-              <h3 class="groupe-title">Épreuve E5 — Support et mise à disposition de services informatiques</h3>
-              <p class="groupe-desc">Projets liés à la mise à disposition, à l'administration et au support de services informatiques.</p>
+              <h3 class="bloc-title">Épreuve E5 — Support et mise à disposition de services informatiques</h3>
+              <p class="bloc-desc">Projets liés à la mise à disposition, à l'administration et au support de services informatiques.</p>
             </div>
           </div>
 
@@ -585,12 +611,12 @@
         </div>
 
         <!-- ========== E6 ========== -->
-        <div id="projets-e6" class="projets-groupe projets-groupe--e6">
-          <div class="groupe-header fade-in-up">
-            <span class="groupe-badge" aria-hidden="true">E6</span>
+        <div id="projets-e6" class="bloc bloc--e6">
+          <div class="bloc-header fade-in-up">
+            <span class="bloc-badge" aria-hidden="true">E6</span>
             <div>
-              <h3 class="groupe-title">Épreuve E6 — Cybersécurité des services informatiques</h3>
-              <p class="groupe-desc">Projets liés à la protection, à la sécurisation et à l'analyse des systèmes et des réseaux.</p>
+              <h3 class="bloc-title">Épreuve E6 — Cybersécurité des services informatiques</h3>
+              <p class="bloc-desc">Projets liés à la protection, à la sécurisation et à l'analyse des systèmes et des réseaux.</p>
             </div>
           </div>
 
@@ -649,77 +675,72 @@
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- CERTIFICATIONS            -->
-    <!-- ========================= -->
-    <section id="certifications" class="section">
-      <div class="container">
-        <h2 class="section-title">Mes <span class="accent">Certifications</span></h2>
-        <p class="section-subtitle">Diplômes et attestations de réussite</p>
-
-        <div class="cert-grid">
-
-          <div class="cert-card fade-in-up">
-            <img src="Image/Cisco3.png" alt="Logo Cisco" class="cert-logo">
-            <h3>Introduction à l’IoT (IdO) et à la transformation digitale</h3>
-            <p class="cert-org">CISCO</p>
-            <div class="cert-actions">
-              <a href="Document/Certification/Certification%201.pdf"
-                 class="btn btn-small btn-primary"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Voir l'attestation (PDF)
-              </a>
-              <a href="Document/Certification/Certification%201.pdf"
-                 class="btn btn-small btn-outline"
-                 download
-                 aria-label="Télécharger l'attestation Introduction à l'IoT au format PDF">
-                Télécharger
-              </a>
+        <!-- ========== TABLEAU DE SYNTHÈSE ========== -->
+        <div id="synthese" class="bloc bloc--synthese">
+          <div class="bloc-header fade-in-up">
+            <span class="bloc-badge" aria-hidden="true">📋</span>
+            <div>
+              <h3 class="bloc-title">Tableau de synthèse</h3>
+              <p class="bloc-desc">Compétences validées dans le cadre du BTS SIO — SISR.</p>
             </div>
           </div>
 
-          <div class="cert-card fade-in-up">
-            <img src="Image/Cisco3.png" alt="Logo Cisco" class="cert-logo">
-            <h3>Premiers pas avec Cisco Packet Tracer</h3>
-            <p class="cert-org">CISCO</p>
-            <div class="cert-actions">
-              <a href="Document/Certification/Certification%202.pdf"
-                 class="btn btn-small btn-primary"
-                 target="_blank"
-                 rel="noopener noreferrer">
-                Voir l'attestation (PDF)
-              </a>
-              <a href="Document/Certification/Certification%202.pdf"
-                 class="btn btn-small btn-outline"
-                 download
-                 aria-label="Télécharger l'attestation Premiers pas avec Cisco Packet Tracer au format PDF">
-                Télécharger
-              </a>
+          <div class="synthese-pdf fade-in-up">
+
+            <!-- Colonne gauche : présentation + actions -->
+            <div class="synthese-infos">
+              <span class="veille-tag">Document officiel</span>
+              <h3>Tableau de synthèse des compétences</h3>
+              <p>
+                Ce document récapitule, pour chaque compétence du référentiel BTS SIO — SISR, les projets et
+                situations professionnelles rencontrés, le contexte, les technologies utilisées, les missions
+                réalisées et les résultats obtenus.
+              </p>
+
+              <div class="veille-actions">
+                <!-- Dépose ton PDF dans Document/Synthese/ (ou adapte le chemin) -->
+                <a href="Document/Synthese/tableau-synthese.pdf"
+                   class="btn btn-primary"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  Ouvrir le tableau (PDF)
+                </a>
+                <a href="Document/Synthese/tableau-synthese.pdf"
+                   class="btn btn-outline"
+                   download
+                   aria-label="Télécharger le tableau de synthèse au format PDF">
+                  Télécharger
+                </a>
+              </div>
             </div>
-          </div>
 
-          <!--
-            MODÈLE pour ajouter une certification : copie ce bloc en dehors du commentaire
-            (supprime les marqueurs de commentaire), puis remplace les valeurs.
-
-          <div class="cert-card fade-in-up">
-            <img src="Image/logo.png" alt="Logo de l'organisme" class="cert-logo">
-            <h3>Nom de la certification</h3>
-            <p class="cert-org">Organisme</p>
-            <div class="cert-actions">
-              <a href="Document/Certification/mon-fichier.pdf" class="btn btn-small btn-primary" target="_blank" rel="noopener noreferrer">Voir l'attestation (PDF)</a>
-              <a href="Document/Certification/mon-fichier.pdf" class="btn btn-small btn-outline" download>Télécharger</a>
+            <!-- Colonne droite : aperçu du PDF -->
+            <div class="synthese-preview">
+              <div class="pdf-frame">
+                <object data="Document/Synthese/tableau-synthese.pdf#view=FitH"
+                        type="application/pdf"
+                        aria-label="Aperçu du tableau de synthèse des compétences">
+                  <!-- Affiché si le navigateur ne sait pas lire les PDF (fréquent sur mobile) -->
+                  <div class="pdf-fallback">
+                    <p>L'aperçu du PDF ne peut pas s'afficher dans ce navigateur.</p>
+                    <a href="Document/Synthese/tableau-synthese.pdf"
+                       class="btn btn-small btn-primary"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                      Ouvrir le PDF
+                    </a>
+                  </div>
+                </object>
+              </div>
+              <p class="pdf-caption">Aperçu du document — cliquez sur « Ouvrir le tableau » pour la version complète.</p>
             </div>
-          </div>
-          -->
 
+          </div>
         </div>
+
       </div>
     </section>
+
 
     <!-- ========================= -->
     <!-- VEILLE TECHNOLOGIQUE      -->
@@ -906,7 +927,9 @@
       <nav class="footer-links" aria-label="Liens du footer">
         <a href="#about">À propos</a>
         <a href="#formation">Formation</a>
-        <a href="#projets">Projets</a>
+        <a href="#competences">Compétences</a>
+        <a href="#projets">Projets E5/E6</a>
+        <a href="#veille">Veille</a>
         <a href="#contact">Contact</a>
       </nav>
 
