@@ -1,28 +1,31 @@
 /* ==========================================================================
-   PORTFOLIO — FEUILLE DE STYLE (version consolidée)
-   Palette : bleu nuit + indigo + cyan (identité systèmes / réseaux / cyber)
-
-   Pour changer les couleurs, modifie UNIQUEMENT le bloc "1. VARIABLES".
+   PORTFOLIO — FEUILLE DE STYLE
+   Thèmes (fonds) : Nuit · Noir · Graphite · Clair · Crème
+   Palettes (couleurs) : Indigo · Émeraude · Ambre · Rose · Océan · Rouge
+   Le visiteur choisit son apparence avec le bouton 🎨 de la barre de navigation.
 
    SOMMAIRE
-    1. Variables            9. Diplôme
-    2. Base                10. Synthèse & Veille (PDF)
-    3. Boutons             11. Compétences
-    4. Navbar              12. Projets E5 / E6
-    5. Hero                13. Certifications
-    6. Sections            14. Contact
-    7. À propos            15. Footer
-    8. Timeline            16. Animations
-                           17. Responsive
-                           18. Accessibilité (animations réduites)
+    1. Variables : thèmes et palettes     10. Compétences
+    2. Base                               11. Blocs (parcours, E5, E6, synthèse)  
+    3. Boutons                            12. Certifications
+    4. Navbar + sélecteur d'apparence     13. Contact
+    5. Hero                               14. Footer
+    6. Sections                           15. Animations
+    7. À propos                           16. Responsive
+    8. Timeline                           17. Impression
+    9. Diplôme + blocs PDF                18. Accessibilité
    ========================================================================== */
 
 
 /* ==========================================================================
-   1. VARIABLES
+   1. VARIABLES — thèmes et palettes
+   Ordre important : valeurs par défaut (Nuit + Indigo), puis thèmes,
+   puis mode clair, puis palettes.
    ========================================================================== */
 :root {
-  /* ---- Thème sombre (par défaut) ---- */
+  color-scheme: dark;
+
+  /* ---- Thème « Nuit » (par défaut) ---- */
   --bg-primary: #080c18;
   --bg-secondary: #0c1222;
   --bg-card: #111a30;
@@ -33,30 +36,28 @@
   --text-secondary: #a9b6d6;
   --text-muted: #7482a6;
 
-  /* Accent principal (indigo clair) et secondaire (cyan) */
+  --nav-bg: rgba(8, 12, 24, 0.72);
+  --shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 4px 22px rgba(0, 0, 0, 0.3);
+
+  /* ---- Palette « Indigo » (par défaut), mode sombre ---- */
   --accent: #8b9cff;
   --accent-rgb: 139, 156, 255;
   --accent-secondary: #22d3ee;
   --accent-secondary-rgb: 34, 211, 238;
+  --on-accent: #050a1a;                       /* texte posé sur un bouton coloré */
 
-  /* Texte posé sur un fond d'accent (boutons) */
-  --on-accent: #050a1a;
-
-  /* Couleurs des cartes de compétences et des épreuves (format R, G, B) */
-  --c1-rgb: 139, 156, 255;   /* indigo   */
-  --c2-rgb: 34, 211, 238;    /* cyan     */
-  --c3-rgb: 192, 132, 252;   /* violet   */
-  --c4-rgb: 52, 211, 153;    /* émeraude */
-  --c5-rgb: 251, 113, 133;   /* rose     */
+  /* Couleurs des cartes (c1 et c2 suivent la palette choisie) */
+  --c1-rgb: var(--accent-rgb);
+  --c2-rgb: var(--accent-secondary-rgb);
+  --c3-rgb: 192, 132, 252;                    /* violet   */
+  --c4-rgb: 52, 211, 153;                     /* émeraude */
+  --c5-rgb: 251, 113, 133;                    /* rose     */
 
   --danger: #fb7185;
   --success: #34d399;
 
-  --nav-bg: rgba(8, 12, 24, 0.72);
   --gradient-accent: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-
-  --shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.4);
-  --shadow-card: 0 4px 22px rgba(0, 0, 0, 0.3);
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -70,38 +71,145 @@
   --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ---- Thème clair ---- */
+/* ---- Thème « Noir » (écrans OLED) ---- */
+[data-theme="black"] {
+  --bg-primary: #000000;
+  --bg-secondary: #08080a;
+  --bg-card: #0f0f13;
+  --bg-elevated: #17171d;
+  --border-color: #25252d;
+  --text-primary: #f5f5f7;
+  --text-secondary: #a6a6b3;
+  --text-muted: #7a7a88;
+  --nav-bg: rgba(0, 0, 0, 0.7);
+  --shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 4px 22px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Thème « Graphite » (gris neutre) ---- */
+[data-theme="graphite"] {
+  --bg-primary: #131417;
+  --bg-secondary: #181a1e;
+  --bg-card: #1f2126;
+  --bg-elevated: #282b32;
+  --border-color: #343841;
+  --text-primary: #eceef3;
+  --text-secondary: #aab0bd;
+  --text-muted: #7d8492;
+  --nav-bg: rgba(19, 20, 23, 0.75);
+}
+
+/* ---- Thème « Clair » ---- */
 [data-theme="light"] {
   --bg-primary: #f4f6fd;
   --bg-secondary: #ffffff;
   --bg-card: #ffffff;
   --bg-elevated: #eef1fb;
   --border-color: #dbe1f3;
-
   --text-primary: #121a33;
   --text-secondary: #4a5578;
   --text-muted: #7b86a6;
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --shadow-soft: 0 12px 34px rgba(18, 26, 51, 0.1);
+  --shadow-card: 0 4px 22px rgba(18, 26, 51, 0.07);
+}
+
+/* ---- Thème « Crème » (clair chaleureux) ---- */
+[data-theme="cream"] {
+  --bg-primary: #faf6ee;
+  --bg-secondary: #fffdf8;
+  --bg-card: #fffdf9;
+  --bg-elevated: #f4eee1;
+  --border-color: #e8dfcd;
+  --text-primary: #2b2117;
+  --text-secondary: #5e5140;
+  --text-muted: #8c7f6d;
+  --nav-bg: rgba(250, 246, 238, 0.85);
+  --shadow-soft: 0 12px 34px rgba(60, 40, 10, 0.1);
+  --shadow-card: 0 4px 22px rgba(60, 40, 10, 0.07);
+}
+
+/* ---- Mode clair (Clair et Crème) : couleurs plus foncées pour rester lisibles ---- */
+[data-mode="light"] {
+  color-scheme: light;
 
   --accent: #4f46e5;
   --accent-rgb: 79, 70, 229;
   --accent-secondary: #0891b2;
   --accent-secondary-rgb: 8, 145, 178;
-
   --on-accent: #ffffff;
 
-  --c1-rgb: 79, 70, 229;
-  --c2-rgb: 8, 145, 178;
   --c3-rgb: 147, 51, 234;
   --c4-rgb: 5, 150, 105;
   --c5-rgb: 225, 29, 72;
 
   --danger: #e11d48;
   --success: #059669;
+}
 
-  --nav-bg: rgba(255, 255, 255, 0.8);
+/* ---- Palettes : une version sombre, une version claire ---- */
+[data-palette="emerald"] {
+  --accent: #4ade80;  --accent-rgb: 74, 222, 128;
+  --accent-secondary: #2dd4bf;  --accent-secondary-rgb: 45, 212, 191;
+  --on-accent: #04140b;
+}
+[data-mode="light"][data-palette="emerald"] {
+  --accent: #059669;  --accent-rgb: 5, 150, 105;
+  --accent-secondary: #0d9488;  --accent-secondary-rgb: 13, 148, 136;
+  --on-accent: #ffffff;
+}
 
-  --shadow-soft: 0 12px 34px rgba(18, 26, 51, 0.1);
-  --shadow-card: 0 4px 22px rgba(18, 26, 51, 0.07);
+[data-palette="amber"] {
+  --accent: #fbbf24;  --accent-rgb: 251, 191, 36;
+  --accent-secondary: #fb923c;  --accent-secondary-rgb: 251, 146, 60;
+  --on-accent: #1c1203;
+}
+[data-mode="light"][data-palette="amber"] {
+  --accent: #d97706;  --accent-rgb: 217, 119, 6;
+  --accent-secondary: #ea580c;  --accent-secondary-rgb: 234, 88, 12;
+  --on-accent: #1c1203;
+}
+
+[data-palette="rose"] {
+  --accent: #f472b6;  --accent-rgb: 244, 114, 182;
+  --accent-secondary: #a78bfa;  --accent-secondary-rgb: 167, 139, 250;
+  --on-accent: #1f0614;
+}
+[data-mode="light"][data-palette="rose"] {
+  --accent: #db2777;  --accent-rgb: 219, 39, 119;
+  --accent-secondary: #7c3aed;  --accent-secondary-rgb: 124, 58, 237;
+  --on-accent: #ffffff;
+}
+
+[data-palette="ocean"] {
+  --accent: #38bdf8;  --accent-rgb: 56, 189, 248;
+  --accent-secondary: #34d399;  --accent-secondary-rgb: 52, 211, 153;
+  --on-accent: #03121c;
+}
+[data-mode="light"][data-palette="ocean"] {
+  --accent: #0284c7;  --accent-rgb: 2, 132, 199;
+  --accent-secondary: #059669;  --accent-secondary-rgb: 5, 150, 105;
+  --on-accent: #ffffff;
+}
+
+[data-palette="red"] {
+  --accent: #f87171;  --accent-rgb: 248, 113, 113;
+  --accent-secondary: #fbbf24;  --accent-secondary-rgb: 251, 191, 36;
+  --on-accent: #1f0606;
+}
+[data-mode="light"][data-palette="red"] {
+  --accent: #dc2626;  --accent-rgb: 220, 38, 38;
+  --accent-secondary: #d97706;  --accent-secondary-rgb: 217, 119, 6;
+  --on-accent: #ffffff;
+}
+
+/* Transition douce pendant un changement de thème (classe ajoutée par le JavaScript) */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease,
+              box-shadow 0.35s ease, fill 0.35s ease !important;
 }
 
 
@@ -121,7 +229,6 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  transition: background-color var(--transition-medium), color var(--transition-medium);
   overflow-x: hidden;
 }
 
@@ -132,7 +239,8 @@ a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 input, textarea { font-family: inherit; }
-h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.2; }
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 600; line-height: 1.2; text-wrap: balance; }
+p { text-wrap: pretty; }
 
 .container {
   max-width: var(--max-width);
@@ -243,11 +351,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 
 /* ==========================================================================
-   4. NAVBAR
+   4. NAVBAR + SÉLECTEUR D'APPARENCE
    Onglets en majuscules, taille fluide selon la largeur de l'écran.
-   - 1200 px et + : barre complète
-   - moins de 1200 px : menu hamburger
-   - de 1200 à 1499 px : libellés raccourcis (.nav-long masqué)
+   Barre complète à partir de 1200 px, menu hamburger en dessous.
    ========================================================================== */
 .navbar {
   position: fixed;
@@ -287,17 +393,17 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: clamp(10px, 1.2vw, 28px);
+  gap: clamp(10px, 1.1vw, 30px);
 }
 
 .nav-link {
   position: relative;
   padding: 4px 0;
-  font-size: clamp(0.68rem, 0.45rem + 0.3vw, 0.82rem);
+  font-size: clamp(0.7rem, 0.42rem + 0.32vw, 0.88rem);
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  white-space: nowrap;           /* empêche « À PROPOS » de passer sur 2 lignes */
+  white-space: nowrap;           /* empêche un onglet de passer sur 2 lignes */
   color: var(--text-secondary);
   transition: color var(--transition-fast);
 }
@@ -313,8 +419,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .nav-link:hover, .nav-link.active { color: var(--text-primary); }
 .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
+.nav-cv-item { display: none; }   /* affiché uniquement sur petit écran, voir Responsive */
 .nav-actions { display: flex; align-items: center; gap: 8px; }
-.nav-actions .btn-small { padding: 8px 13px; font-size: 0.78rem; }
+.nav-actions .btn-small { padding: 8px 14px; font-size: 0.8rem; }
 
 .theme-toggle {
   width: 36px; height: 36px;
@@ -322,12 +429,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-radius: 50%;
   border: 1px solid var(--border-color);
   font-size: 1.05rem;
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
 }
 .theme-toggle:hover { transform: rotate(15deg); border-color: var(--accent); }
+.theme-toggle[aria-expanded="true"] { border-color: var(--accent); background: rgba(var(--accent-rgb), 0.14); }
+
 .icon-moon { display: none; }
-[data-theme="light"] .icon-sun { display: none; }
-[data-theme="light"] .icon-moon { display: inline; }
+[data-mode="light"] .icon-sun { display: none; }
+[data-mode="light"] .icon-moon { display: inline; }
 
 .hamburger {
   display: none;
@@ -347,6 +456,127 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---- Sélecteur d'apparence (bouton 🎨 créé par le JavaScript) ---- */
+.theme-picker { position: relative; }
+
+.theme-panel {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: min(310px, calc(100vw - 32px));
+  padding: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top right;
+  transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+  z-index: 1200;
+}
+.theme-panel.open { opacity: 1; visibility: visible; transform: none; }
+
+.panel-section + .panel-section { margin-top: 18px; }
+
+.panel-title {
+  margin-bottom: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.panel-current { color: var(--accent); letter-spacing: 0.04em; margin-left: 4px; }
+
+.theme-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+.theme-option {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 7px 7px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-elevated);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-secondary);
+  transition: border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+.theme-option:hover { border-color: var(--accent); color: var(--text-primary); transform: translateY(-2px); }
+.theme-option[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.28);
+}
+
+/* Mini-aperçu du thème : fond + carte + pastille de la couleur active */
+.theme-preview {
+  position: relative;
+  display: block;
+  height: 34px;
+  border-radius: 6px;
+  background: var(--sw-bg);
+  box-shadow: inset 0 0 0 1px rgba(128, 128, 128, 0.3);
+  overflow: hidden;
+}
+.theme-preview::before {
+  content: "";
+  position: absolute;
+  left: 6px; top: 6px; right: 14px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--sw-card);
+  box-shadow: 0 0 0 1px rgba(128, 128, 128, 0.25);
+}
+.theme-preview::after {
+  content: "";
+  position: absolute;
+  left: 6px; bottom: 6px;
+  width: 18px; height: 6px;
+  border-radius: 3px;
+  background: var(--gradient-accent);
+}
+
+.palette-options { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.palette-option {
+  position: relative;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sw-a), var(--sw-b));
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.palette-option:hover { transform: scale(1.12); }
+.palette-option[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--bg-card), 0 0 0 4px var(--sw-a); }
+.palette-option[aria-pressed="true"]::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+.panel-reset {
+  margin-top: 16px;
+  width: 100%;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.panel-reset:hover { border-color: var(--accent); color: var(--accent); }
 
 /* Barre de progression de lecture */
 .scroll-progress {
@@ -478,7 +708,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   margin: 0 auto;
   border-radius: 50%;
   padding: 6px;
-  background: conic-gradient(from 90deg, var(--accent), var(--accent-secondary), #c084fc, var(--accent));
+  background: conic-gradient(from 90deg, var(--accent), var(--accent-secondary), rgb(var(--c3-rgb)), var(--accent));
   box-shadow: 0 0 60px rgba(var(--accent-rgb), 0.28), var(--shadow-soft);
   animation: floatPhoto 6s ease-in-out infinite;
 }
@@ -582,7 +812,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 
 /* ==========================================================================
-   8. TIMELINE (Formation / Parcours)
+   8. TIMELINE (formation et stages)
    ========================================================================== */
 .timeline {
   position: relative;
@@ -615,13 +845,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   box-shadow: var(--shadow-card);
   transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
-.timeline-content:hover { transform: translateY(-3px); border-color: rgba(var(--accent-rgb), 0.5); }
+.timeline-content:hover { transform: translateY(-3px); border-color: rgba(var(--g-rgb, var(--accent-rgb)), 0.5); }
 
 .timeline-period {
   display: inline-block;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--accent-secondary);
+  color: rgb(var(--g-rgb, var(--accent-secondary-rgb)));
   margin-bottom: 6px;
   letter-spacing: 0.03em;
 }
@@ -645,7 +875,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 
 /* ==========================================================================
-   9. FOCUS SUR LE DIPLÔME (BTS SIO SISR)
+   9. DIPLÔME + BLOCS AVEC APERÇU PDF (synthèse, veille)
    ========================================================================== */
 .diplome-focus {
   max-width: 980px;
@@ -662,11 +892,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .diplome-header h3 { font-size: 1.45rem; line-height: 1.25; }
 .diplome-option { color: var(--accent-secondary); font-weight: 600; font-size: 0.98rem; margin-top: 6px; }
 
-.diplome-intro {
-  border-left: 3px solid var(--accent);
-  padding-left: 20px;
-  margin-bottom: 34px;
-}
+.diplome-intro { border-left: 3px solid var(--accent); padding-left: 20px; margin-bottom: 34px; }
 .diplome-intro p { color: var(--text-secondary); font-size: 0.94rem; margin-bottom: 12px; }
 .diplome-intro p:last-child { margin-bottom: 0; }
 
@@ -680,23 +906,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .diplome-list li { position: relative; padding-left: 22px; margin-bottom: 16px; }
-.diplome-list li::before {
-  content: "▹";
-  position: absolute;
-  left: 0; top: 0;
-  color: var(--accent-secondary);
-}
+.diplome-list li::before { content: "▹"; position: absolute; left: 0; top: 0; color: var(--accent-secondary); }
 .diplome-list strong { display: block; font-size: 0.9rem; margin-bottom: 3px; color: var(--text-primary); }
 .diplome-list span { display: block; font-size: 0.87rem; color: var(--text-secondary); line-height: 1.55; }
 
 .diplome-eval { margin-top: 34px; padding-top: 28px; border-top: 1px solid var(--border-color); }
 .diplome-eval h4 { font-size: 1.02rem; margin-bottom: 18px; }
 
-.eval-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 16px;
-}
+.eval-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
 .eval-item {
   display: flex;
   align-items: flex-start;
@@ -711,10 +928,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .eval-icon { font-size: 1.15rem; line-height: 1.4; }
 .eval-item p { font-size: 0.86rem; color: var(--text-secondary); }
 
-
-/* ==========================================================================
-   10. TABLEAU DE SYNTHÈSE + VEILLE (blocs avec aperçu PDF)
-   ========================================================================== */
+/* Blocs avec texte à gauche et aperçu PDF à droite */
 .synthese-pdf, .veille-single {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -768,7 +982,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 
 /* ==========================================================================
-   11. COMPÉTENCES — une couleur par catégorie
+   10. COMPÉTENCES — une couleur par catégorie
    ========================================================================== */
 .skills-grid {
   display: grid;
@@ -820,14 +1034,42 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 
 /* ==========================================================================
-   12. PROJETS — blocs E5 / E6
+   11. BLOCS — parcours, projets E5, projets E6, synthèse
+   Chaque bloc a sa couleur (--g-rgb) et son en-tête (badge + titre).
    ========================================================================== */
-/* Couleur propre à chaque épreuve (E5 = indigo, E6 = cyan) */
-.projets-groupe--e5, .switch-link--e5 { --g-rgb: var(--c1-rgb); }
-.projets-groupe--e6, .switch-link--e6 { --g-rgb: var(--c2-rgb); }
+.bloc { scroll-margin-top: 100px; }
+.bloc + .bloc { margin-top: 80px; }
 
-/* Accès rapide sous le sous-titre */
-.projets-switch {
+.bloc--parcours   { --g-rgb: var(--c3-rgb); }   /* violet   */
+.bloc--e5         { --g-rgb: var(--c1-rgb); }   /* couleur 1 de la palette */
+.bloc--e6         { --g-rgb: var(--c2-rgb); }   /* couleur 2 de la palette */
+.bloc--synthese   { --g-rgb: var(--c4-rgb); }   /* émeraude */
+
+.bloc-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+.bloc-badge {
+  flex-shrink: 0;
+  width: 58px; height: 58px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  background: rgba(var(--g-rgb), 0.14);
+  color: rgb(var(--g-rgb));
+  border: 1px solid rgba(var(--g-rgb), 0.4);
+}
+.bloc-title { font-size: 1.3rem; line-height: 1.25; }
+.bloc-desc { color: var(--text-secondary); font-size: 0.92rem; margin-top: 4px; }
+
+/* Accès rapide en haut de la section Projets */
+.bloc-switch {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -847,33 +1089,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   transition: transform var(--transition-fast), background-color var(--transition-fast);
 }
 .switch-link:hover { transform: translateY(-2px); background: rgba(var(--g-rgb), 0.2); }
-
-/* Un bloc par épreuve */
-.projets-groupe { scroll-margin-top: 100px; }
-.projets-groupe + .projets-groupe { margin-top: 80px; }
-
-.groupe-header {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 28px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
-}
-.groupe-badge {
-  flex-shrink: 0;
-  width: 58px; height: 58px;
-  display: flex; align-items: center; justify-content: center;
-  border-radius: var(--radius-md);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.25rem;
-  background: rgba(var(--g-rgb), 0.14);
-  color: rgb(var(--g-rgb));
-  border: 1px solid rgba(var(--g-rgb), 0.4);
-}
-.groupe-title { font-size: 1.3rem; line-height: 1.25; }
-.groupe-desc { color: var(--text-secondary); font-size: 0.92rem; margin-top: 4px; }
+.switch-link--parcours { --g-rgb: var(--c3-rgb); }
+.switch-link--e5       { --g-rgb: var(--c1-rgb); }
+.switch-link--e6       { --g-rgb: var(--c2-rgb); }
+.switch-link--synthese { --g-rgb: var(--c4-rgb); }
 
 /* Cartes projet */
 .projects-grid {
@@ -911,7 +1130,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 
 /* ==========================================================================
-   13. CERTIFICATIONS
+   12. CERTIFICATIONS
    ========================================================================== */
 .cert-grid {
   display: grid;
@@ -930,8 +1149,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .cert-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(var(--accent-secondary-rgb), 0.55);
-  box-shadow: 0 14px 32px rgba(var(--accent-secondary-rgb), 0.14);
+  border-color: rgba(var(--g-rgb, var(--accent-secondary-rgb)), 0.55);
+  box-shadow: 0 14px 32px rgba(var(--g-rgb, var(--accent-secondary-rgb)), 0.14);
 }
 
 /* Indicateur PDF au survol */
@@ -944,9 +1163,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   letter-spacing: 0.06em;
   padding: 3px 8px;
   border-radius: 4px;
-  background: rgba(var(--accent-secondary-rgb), 0.14);
-  color: var(--accent-secondary);
-  border: 1px solid rgba(var(--accent-secondary-rgb), 0.35);
+  background: rgba(var(--g-rgb, var(--accent-secondary-rgb)), 0.14);
+  color: rgb(var(--g-rgb, var(--accent-secondary-rgb)));
+  border: 1px solid rgba(var(--g-rgb, var(--accent-secondary-rgb)), 0.35);
   opacity: 0;
   transition: opacity var(--transition-fast);
 }
@@ -964,7 +1183,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 
 /* ==========================================================================
-   14. CONTACT
+   13. CONTACT
    ========================================================================== */
 .contact-grid {
   display: grid;
@@ -1004,9 +1223,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .form-error { font-size: 0.8rem; color: var(--danger); min-height: 1em; }
 
 .form-note { font-size: 0.9rem; padding: 10px 14px; border-radius: var(--radius-sm); display: none; }
-.form-note.visible { display: block; }
-.form-note.success { background: rgba(52, 211, 153, 0.12); color: var(--success); display: block; }
+.form-note.success { background: rgba(var(--c4-rgb), 0.12); color: var(--success); display: block; }
 .form-note.info { background: rgba(var(--accent-rgb), 0.12); color: var(--accent); display: block; }
+.form-note.error { background: rgba(var(--c5-rgb), 0.12); color: var(--danger); display: block; }
 
 .contact-info { display: flex; flex-direction: column; gap: 26px; justify-content: center; }
 
@@ -1031,14 +1250,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .contact-map:hover { transform: translateY(-3px); border-color: var(--accent); }
 .contact-map iframe { width: 100%; height: 100%; border: 0; display: block; }
 
-/* Thème sombre : adoucit la carte pour qu'elle s'accorde au site (optionnel) */
-:root:not([data-theme="light"]) .contact-map iframe {
+/* Thèmes sombres : adoucit la carte pour qu'elle s'accorde au site */
+:root:not([data-mode="light"]) .contact-map iframe {
   filter: invert(90%) hue-rotate(180deg) brightness(0.95) contrast(0.9);
 }
 
 
 /* ==========================================================================
-   15. FOOTER
+   14. FOOTER
    ========================================================================== */
 .footer {
   background: var(--bg-secondary);
@@ -1086,7 +1305,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 
 /* ==========================================================================
-   16. ANIMATIONS
+   15. ANIMATIONS
    ========================================================================== */
 @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 @keyframes blink { 50% { opacity: 0; } }
@@ -1173,13 +1392,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 
 /* ==========================================================================
-   17. RESPONSIVE
+   16. RESPONSIVE
    ========================================================================== */
-
-/* De 1200 à 1499 px : libellés raccourcis pour que tous les onglets tiennent */
-@media (min-width: 1200px) and (max-width: 1499px) {
-  .nav-long { display: none; }
-}
 
 /* Très grand écran : version aérée */
 @media (min-width: 1600px) {
@@ -1235,18 +1449,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .diplome-header h3 { font-size: 1.25rem; }
 }
 
+/* Petit écran : le panneau d'apparence s'ancre sur la barre entière */
 @media (max-width: 700px) {
   .about-grid { grid-template-columns: 1fr; gap: 30px; }
   .section { padding: 80px 0; }
+  .theme-picker { position: static; }
+  .theme-panel { top: calc(100% + 8px); right: 12px; }
 }
 
 @media (max-width: 640px) {
   .nav-actions .btn-small { display: none; }
+  .nav-cv-item { display: block; }
 }
 
 @media (max-width: 600px) {
-  .groupe-header { flex-direction: column; align-items: flex-start; }
-  .groupe-title { font-size: 1.15rem; }
+  .bloc-header { flex-direction: column; align-items: flex-start; }
+  .bloc-title { font-size: 1.15rem; }
 }
 
 @media (max-width: 480px) {
@@ -1255,6 +1473,33 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .footer-bottom { flex-direction: column; gap: 10px; }
   .back-to-top { position: static; }
   .cert-actions .btn, .veille-actions .btn { flex: 1 1 100%; }
+}
+
+
+/* ==========================================================================
+   17. IMPRESSION (Ctrl + P) : version sobre, sans animations
+   ========================================================================== */
+@media print {
+  :root {
+    --bg-primary: #ffffff; --bg-secondary: #ffffff; --bg-card: #ffffff; --bg-elevated: #f3f4f6;
+    --border-color: #d1d5db; --text-primary: #111111; --text-secondary: #374151; --text-muted: #6b7280;
+    --shadow-soft: none; --shadow-card: none;
+  }
+
+  .navbar, .scroll-progress, .network-canvas, .hero-bg, .scroll-indicator, .back-to-top,
+  .contact-form, .contact-map, .theme-picker, .skip-link, .pdf-frame, .bloc-switch {
+    display: none !important;
+  }
+
+  .hero { min-height: auto; padding-top: 20px; }
+  .section { padding: 28px 0; }
+  .hero-title { background: none; color: #111111; -webkit-text-fill-color: #111111; }
+
+  .fade-in, .fade-in-up, .fade-in-left, .fade-in-right, .hero-text > * {
+    opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important;
+  }
+  .skill-card .badge { opacity: 1 !important; }
+  .project-card, .skill-card, .cert-card, .timeline-content { break-inside: avoid; box-shadow: none; }
 }
 
 
@@ -1283,4 +1528,5 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .skill-card.visible .badge { animation: none; }
   .fx-card::before { display: none; }
   .section-title::after { width: 60px; transition: none; }
+  .theme-panel { transition: none; }
 }
