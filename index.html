@@ -414,8 +414,8 @@
         <div class="bloc-switch">
           <a href="#parcours" class="switch-link switch-link--parcours">Parcours professionnel</a>
           <a href="#projets-e5" class="switch-link switch-link--e5">Projets E5</a>
-          <a href="#projets-e6" class="switch-link switch-link--e6">Projets E6</a>
           <a href="#synthese" class="switch-link switch-link--synthese">Tableau de synthèse</a>
+          <a href="#projets-e6" class="switch-link switch-link--e6">Projets E6</a>
         </div>
 
         <!-- ========== PARCOURS PROFESSIONNEL (stages) ========== -->
@@ -542,6 +542,69 @@
           </div>
         </div>
 
+        <!-- ========== TABLEAU DE SYNTHÈSE ========== -->
+        <div id="synthese" class="bloc bloc--synthese">
+          <div class="bloc-header fade-in-up">
+            <span class="bloc-badge" aria-hidden="true">📋</span>
+            <div>
+              <h3 class="bloc-title">Tableau de synthèse</h3>
+              <p class="bloc-desc">Compétences validées dans le cadre du BTS SIO — SISR.</p>
+            </div>
+          </div>
+
+          <div class="synthese-pdf fade-in-up">
+
+            <!-- Colonne gauche : présentation + actions -->
+            <div class="synthese-infos">
+              <span class="veille-tag">Document officiel</span>
+              <h3>Tableau de synthèse des compétences</h3>
+              <p>
+                Ce document récapitule, pour chaque compétence du référentiel BTS SIO — SISR, les projets et
+                situations professionnelles rencontrés, le contexte, les technologies utilisées, les missions
+                réalisées et les résultats obtenus.
+              </p>
+
+              <div class="veille-actions">
+                <!-- Dépose ton PDF dans Document/Synthese/ (ou adapte le chemin) -->
+                <a href="Document/Synthese/tableau-synthese.pdf"
+                   class="btn btn-primary"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  Ouvrir le tableau (PDF)
+                </a>
+                <a href="Document/Synthese/tableau-synthese.pdf"
+                   class="btn btn-outline"
+                   download
+                   aria-label="Télécharger le tableau de synthèse au format PDF">
+                  Télécharger
+                </a>
+              </div>
+            </div>
+
+            <!-- Colonne droite : aperçu du PDF -->
+            <div class="synthese-preview">
+              <div class="pdf-frame">
+                <object data="Document/Synthese/tableau-synthese.pdf#view=FitH"
+                        type="application/pdf"
+                        aria-label="Aperçu du tableau de synthèse des compétences">
+                  <!-- Affiché si le navigateur ne sait pas lire les PDF (fréquent sur mobile) -->
+                  <div class="pdf-fallback">
+                    <p>L'aperçu du PDF ne peut pas s'afficher dans ce navigateur.</p>
+                    <a href="Document/Synthese/tableau-synthese.pdf"
+                       class="btn btn-small btn-primary"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                      Ouvrir le PDF
+                    </a>
+                  </div>
+                </object>
+              </div>
+              <p class="pdf-caption">Aperçu du document — cliquez sur « Ouvrir le tableau » pour la version complète.</p>
+            </div>
+
+          </div>
+        </div>
+
         <!-- ========== E6 ========== -->
         <div id="projets-e6" class="bloc bloc--e6">
           <div class="bloc-header fade-in-up">
@@ -604,69 +667,6 @@
             </article>
 
             <!-- Pour ajouter un projet E6 : copie un bloc <article class="project-card"> ci-dessus -->
-          </div>
-        </div>
-
-        <!-- ========== TABLEAU DE SYNTHÈSE ========== -->
-        <div id="synthese" class="bloc bloc--synthese">
-          <div class="bloc-header fade-in-up">
-            <span class="bloc-badge" aria-hidden="true">📋</span>
-            <div>
-              <h3 class="bloc-title">Tableau de synthèse</h3>
-              <p class="bloc-desc">Compétences validées dans le cadre du BTS SIO — SISR.</p>
-            </div>
-          </div>
-
-          <div class="synthese-pdf fade-in-up">
-
-            <!-- Colonne gauche : présentation + actions -->
-            <div class="synthese-infos">
-              <span class="veille-tag">Document officiel</span>
-              <h3>Tableau de synthèse des compétences</h3>
-              <p>
-                Ce document récapitule, pour chaque compétence du référentiel BTS SIO — SISR, les projets et
-                situations professionnelles rencontrés, le contexte, les technologies utilisées, les missions
-                réalisées et les résultats obtenus.
-              </p>
-
-              <div class="veille-actions">
-                <!-- Dépose ton PDF dans Document/Synthese/ (ou adapte le chemin) -->
-                <a href="Document/Synthese/tableau-synthese.pdf"
-                   class="btn btn-primary"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                  Ouvrir le tableau (PDF)
-                </a>
-                <a href="Document/Synthese/tableau-synthese.pdf"
-                   class="btn btn-outline"
-                   download
-                   aria-label="Télécharger le tableau de synthèse au format PDF">
-                  Télécharger
-                </a>
-              </div>
-            </div>
-
-            <!-- Colonne droite : aperçu du PDF -->
-            <div class="synthese-preview">
-              <div class="pdf-frame">
-                <object data="Document/Synthese/tableau-synthese.pdf#view=FitH"
-                        type="application/pdf"
-                        aria-label="Aperçu du tableau de synthèse des compétences">
-                  <!-- Affiché si le navigateur ne sait pas lire les PDF (fréquent sur mobile) -->
-                  <div class="pdf-fallback">
-                    <p>L'aperçu du PDF ne peut pas s'afficher dans ce navigateur.</p>
-                    <a href="Document/Synthese/tableau-synthese.pdf"
-                       class="btn btn-small btn-primary"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                      Ouvrir le PDF
-                    </a>
-                  </div>
-                </object>
-              </div>
-              <p class="pdf-caption">Aperçu du document — cliquez sur « Ouvrir le tableau » pour la version complète.</p>
-            </div>
-
           </div>
         </div>
 
